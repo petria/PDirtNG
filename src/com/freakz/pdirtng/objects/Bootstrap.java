@@ -1,5 +1,7 @@
 package com.freakz.pdirtng.objects;
 
+import com.freakz.pdirtng.World;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -47,11 +49,15 @@ public class Bootstrap {
       line = br.readLine();
       location.setShortDescription(line);
       String desc = "";
-      do {
+      while (true) {
         line = br.readLine();
+        if (line.equals("^")) {
+          break;
+        }
         desc += line + "\n";
-      } while (!line.equals("^"));
+      }
       location.setLongDescription(desc);
+      World.getInstance().addLocation(location);
 
     }
 
