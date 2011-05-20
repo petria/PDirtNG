@@ -1,0 +1,18 @@
+&+WLevel Name   Level  Score  Strength   Level Name   Level   Score  Strength
+&+B===========  =====  ====== ========   ===========  =====   =====  ========
+&+WNovice       1      0       56        Wanderer     2       400     62
+&+WSightseer    3      1000    68        Nomad        4       2000    74
+&+WWarrior      5      4000    80        Champion     6       7500    86
+&+WSquire       7      10000   92        Knight       8       15000   98
+&+WPrince       9      25000   104       Ruler        10      40000   110
+&+WConquerer    11     60000   116       Magician     12      80000   122
+&+WEvoker       13     100000  128       Honorable    14      130000  134
+&+WHoly         15     175000  140       Priest       16      220000  146
+&+WAppren Wiz   17     300000  152       Emerit.Wiz   18      --      158
+&+WWizard       1000   --      6050      Senior Wiz   5000    --      30050
+&+WCounsel      7000   --      42050     ArchWizard   10000   --      60050 
+&+WHigh Arch    30000  --      180050    Advisor      40000   --      240050
+&+WDemiGod      50000  --      300050    High Demi    80000   --      480050
+&+WGod          90000  --      540050    Master       99999   --      600044
+&+B===========  =====  ====== =========  ===========  =====   ===== =========
+

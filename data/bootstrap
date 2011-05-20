@@ -1,0 +1,12 @@
+A:actions
+Z:zones
+L:locations
+M:mobiles
+E:levels
+H:hours
+I:intermud
+O:objects
+P:CONFIG/pflags
+C:CONFIG/aberchat
+V:verbs
+W:wizlist

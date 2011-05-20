@@ -1,0 +1,79 @@
+
+Comment:  Which P-flag and Mask-bits to set when a player changes status...
+Comment:  The higher levels inherit bits from lower.
+
+PflagApprentice:
+  NoExorcise NoSnoop NoHassle NoAlias NoZap NoSummon NoTrace NoSteal
+  NoMagic NoForce TitleEdit Emote Goto CanTrance InterMUD AberChat Asmortal;
+
+MaskApprentice:
+  NoExorcise NoSnoop NoHassle NoAlias NoZap NoSummon NoTrace NoSteal
+  NoMagic NoForce TitleEdit Emote Goto CanTrance InterMUD AberChat Asmortal;
+
+PflagEmeriti:
+  Clone RoomEdit Exorcise Reset Echo Resurrect ShowUsers Stats SummonObj
+  Weather Lock Peace Healall StartInvis Echoall SummonPlr;
+
+MaskEmeriti:
+  Clone RoomEdit Exorcise Reset Echo Resurrect ShowUsers Stats SummonObj
+  Weather Lock Peace HealAll StartInvis Echoall SummonPlr;
+
+PflagWizard:
+  MayPunt Trace Zap;
+
+MaskWizard:
+  MayPunt Trace Zap;
+
+PflagSenior:
+  NameRaw Timeout NoTimeOut ChMobData ObjectEdit MFlagEdit;
+
+MaskSenior:
+  NameRaw Timeout NoTimeOut ChMobData ObjectEdit MFlagEdit;
+
+PflagCounsel:
+  ChScore WreckDoors ChLevel;
+
+MaskCounsel:
+  ChScore WreckDoors ChLevel CantBecome;
+
+PflagArchWizard:
+  Socket Frob UAFInfo Snoop Testrunner Heal Alias Syslog Reboot PFlagEdit;
+
+MaskArchWizard:
+  Socket Frob UAFInfo Snoop Testrunner Heal Alias Syslog Reboot PFlagEdit;
+
+PflagHighArch:
+  SysStat;
+
+MaskHighArch:
+  SysStat;
+
+PflagAdvisor:
+  PflagEdit Load/Store QuickWriter;
+
+MaskAdvisor:
+  PflagEdit Load/Store QuickWriter;
+
+PflagDemiGod:
+  Delete BanPlayer;
+
+MaskDemiGod:
+  Delete BanPlayer;
+
+PflagHighDemi:
+  Disconnect  Shutdown  Raw OpenGame MayCode BanHost Shutdown;
+
+MaskHighDemi:
+  Disconnect Shutdown Raw OpenGame MayCode BanHost Shutdown;
+
+PflagGod:
+  MaskEdit AliasPlayer Crash Debug Signal;
+
+MaskGod:
+  MaskEdit AliasPlayer Crash Debug Signal;  
+
+PflagMaster:
+  Signal Crash;
+
+MaskMaster:
+  Signal Crash;

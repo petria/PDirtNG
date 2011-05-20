@@ -1,0 +1,188 @@
+FILE: Cannot open file intermud (No such file or directory)
+FILE: Cannot open file wizlist (No such file or directory)
+May 18 14:31:21| SYSTEM: RELOADing the Deamon
+May 18 14:31:21| PERROR MUDDNS: [111] Connection refused
+May 18 14:31:55| SIGNAL: SIGTERM Handled
+May 18 14:31:55| BOOTSTRAP: Normal termination of mud
+FILE: Cannot open file intermud (No such file or directory)
+FILE: Cannot open file wizlist (No such file or directory)
+May 18 14:32:15| SYSTEM: RELOADing the Deamon
+May 18 14:32:15| PERROR MUDDNS: [111] Connection refused
+May 18 14:33:04| SIGNAL: SIGSEGV[11] received
+May 18 14:33:04| RECOVER: Disconnecting connection from host i7.serveirc.com
+May 18 14:33:04| SYSTEM: UPDATE Crash occured (file: 24899)
+FILE: Cannot open file intermud (No such file or directory)
+FILE: Cannot open file wizlist (No such file or directory)
+May 18 14:33:04| SYSTEM: RELOADing the Deamon
+May 18 14:33:04| RECOVER: Update finished
+May 18 14:33:04| PERROR MUDDNS: [110] Connection timed out
+May 18 14:33:25| SIGNAL: SIGSEGV[11] received
+May 18 14:33:25| RECOVER: Disconnecting connection from host i7.serveirc.com
+May 18 14:33:25| SYSTEM: UPDATE Crash occured (file: 24925)
+FILE: Cannot open file intermud (No such file or directory)
+FILE: Cannot open file wizlist (No such file or directory)
+May 18 14:33:25| SYSTEM: RELOADing the Deamon
+May 18 14:33:25| RECOVER: Update finished
+May 18 14:33:25| PERROR MUDDNS: [110] Connection timed out
+May 18 14:39:53| SIGNAL: SIGTERM Handled
+May 18 14:39:53| SYSTEM: Closing listening socket
+May 18 14:39:53| BOOTSTRAP: Normal termination of mud
+FILE: Cannot open file intermud (No such file or directory)
+FILE: Cannot open file wizlist (No such file or directory)
+May 18 14:40:07| SYSTEM: RELOADing the Deamon
+May 18 14:40:07| PERROR MUDDNS: [111] Connection refused
+May 18 14:40:32| CONN: Entry Rydis [lev 99999][fd: 4] from i7.serveirc.com
+May 18 14:40:32| SIGNAL: SIGSEGV[11] received
+FILE: Cannot open file intermud (No such file or directory)
+May 18 14:42:33| SYSTEM: RELOADing the Deamon
+May 18 14:42:33| PERROR MUDDNS: [111] Connection refused
+May 18 14:42:55| CONN: Entry Homo [lev 1, scr 0][fd: 4]
+May 18 14:42:55| CONN: Homo connected from i7.serveirc.com
+May 18 14:42:55| SIGNAL: SIGSEGV[11] received
+FILE: Cannot open file intermud (No such file or directory)
+May 18 14:43:37| SYSTEM: RELOADing the Deamon
+May 18 14:43:37| PERROR MUDDNS: [111] Connection refused
+May 18 14:44:12| SIGNAL: SIGTERM Handled
+May 18 14:44:12| BOOTSTRAP: Normal termination of mud
+FILE: Cannot open file intermud (No such file or directory)
+May 18 14:44:13| SYSTEM: RELOADing the Deamon
+May 18 14:44:13| PERROR MUDDNS: [111] Connection refused
+May 18 14:44:30| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 14:44:30| CONN: Homo connected from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 14:58:23| SYSTEM: RELOADing the Deamon
+May 18 14:58:23| PERROR MUDDNS: [111] Connection refused
+May 18 14:59:30| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 14:59:30| CONN: Homo connected from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 15:34:43| SYSTEM: RELOADing the Deamon
+May 18 15:34:43| PERROR MUDDNS: [111] Connection refused
+May 18 15:34:59| SIGNAL: SIGTERM Handled
+May 18 15:34:59| BOOTSTRAP: Normal termination of mud
+FILE: Cannot open file intermud (No such file or directory)
+May 18 15:35:00| SYSTEM: RELOADing the Deamon
+May 18 15:35:00| PERROR MUDDNS: [111] Connection refused
+May 18 15:35:12| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 15:35:12| CONN: Homo connected from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 15:39:51| SYSTEM: RELOADing the Deamon
+May 18 15:39:51| PERROR MUDDNS: [111] Connection refused
+May 18 15:40:00| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 15:40:00| CONN: Homo connected from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 15:41:16| SYSTEM: RELOADing the Deamon
+May 18 15:41:16| PERROR MUDDNS: [111] Connection refused
+May 18 15:41:24| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 15:41:24| CONN: Homo connected from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 15:42:42| SYSTEM: RELOADing the Deamon
+May 18 15:42:42| PERROR MUDDNS: [111] Connection refused
+May 18 15:42:48| SIGNAL: SIGTERM Handled
+May 18 15:42:48| BOOTSTRAP: Normal termination of mud
+FILE: Cannot open file intermud (No such file or directory)
+May 18 15:42:49| SYSTEM: RELOADing the Deamon
+May 18 15:42:49| PERROR MUDDNS: [111] Connection refused
+May 18 15:42:58| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 15:42:58| CONN: Homo connected from i7.serveirc.com
+May 18 15:43:25| CONN: Exit Homo [lev 1, scr 0, str 41/56][fd: 6]
+May 18 15:43:35| CONN: Entry Rydis [lev 99999][fd: 6] from i7.serveirc.com
+May 18 15:48:26| SUMMON: object greatsword by Rydis from waste19 to blizzard7.
+FILE: Cannot open file intermud (No such file or directory)
+May 18 17:29:28| SYSTEM: RELOADing the Deamon
+May 18 17:29:28| PERROR MUDDNS: [111] Connection refused
+May 18 17:31:21| SIGNAL: SIGINT[2] received
+May 18 17:31:21| SYSTEM: UPDATE Crash occured (file: 4441)
+FILE: Cannot open file intermud (No such file or directory)
+May 18 17:31:21| SYSTEM: RELOADing the Deamon
+May 18 17:31:21| RECOVER: Update finished
+May 18 17:31:21| PERROR MUDDNS: [110] Connection timed out
+May 18 19:43:00| SIGNAL: SIGTERM Handled
+May 18 19:43:00| SYSTEM: Closing listening socket
+May 18 19:43:00| BOOTSTRAP: Normal termination of mud
+FILE: Cannot open file intermud (No such file or directory)
+May 18 19:43:01| SYSTEM: RELOADing the Deamon
+May 18 19:43:01| PERROR MUDDNS: [111] Connection refused
+May 18 19:43:48| CONN: Entry Homo [lev 1, scr 0][fd: 4]
+May 18 19:43:48| CONN: Homo connected from i7.serveirc.com
+May 18 19:44:44| SIGNAL: SIGINT[2] received
+May 18 19:44:44| DEBUG: Last Command (19:43:48) Homo@intro1: quit
+May 18 19:44:44| SYSTEM: UPDATE Crash occured (file: 12150)
+FILE: Cannot open file intermud (No such file or directory)
+May 18 19:44:44| SYSTEM: RELOADing the Deamon
+May 18 19:44:44| RECOVER: Update finished
+May 18 19:44:44| PERROR MUDDNS: [110] Connection timed out
+May 18 19:45:09| SIGNAL: SIGTERM Handled
+May 18 19:45:09| SYSTEM: Closing listening socket
+May 18 19:45:09| BOOTSTRAP: Normal termination of mud
+FILE: Cannot open file intermud (No such file or directory)
+May 18 19:45:10| SYSTEM: RELOADing the Deamon
+May 18 19:45:10| PERROR MUDDNS: [111] Connection refused
+May 18 19:45:19| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 19:45:19| CONN: Homo connected from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 20:20:00| SYSTEM: RELOADing the Deamon
+May 18 20:20:00| PERROR MUDDNS: [111] Connection refused
+May 18 20:20:12| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 20:20:12| CONN: Homo connected from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 20:25:04| SYSTEM: RELOADing the Deamon
+May 18 20:25:04| PERROR MUDDNS: [111] Connection refused
+May 18 20:25:23| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 20:25:23| CONN: Homo connected from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 20:54:12| SYSTEM: RELOADing the Deamon
+May 18 20:54:12| PERROR MUDDNS: [111] Connection refused
+May 18 20:54:26| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 20:54:26| CONN: Homo connected from i7.serveirc.com
+May 18 20:54:52| CONN: Entry Rydis [lev 99999][fd: 22] from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 21:08:30| SYSTEM: RELOADing the Deamon
+May 18 21:08:30| PERROR MUDDNS: [111] Connection refused
+May 18 21:08:39| CONN: Entry Rydis [lev 99999][fd: 6] from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 21:37:05| SYSTEM: RELOADing the Deamon
+May 18 21:37:05| PERROR MUDDNS: [111] Connection refused
+May 18 21:37:47| CONN: Entry Rydis [lev 99999][fd: 6] from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+FILE: Cannot open file intermud (No such file or directory)
+May 18 22:06:40| SYSTEM: RELOADing the Deamon
+May 18 22:06:40| PERROR MUDDNS: [110] Connection timed out
+FILE: Cannot open file intermud (No such file or directory)
+May 18 22:17:48| SYSTEM: RELOADing the Deamon
+May 18 22:17:48| PERROR MUDDNS: [110] Connection timed out
+May 18 22:18:00| CONN: Entry Rydis [lev 99999][fd: 6] from i7.serveirc.com
+May 18 22:18:18| CONN: Entry Homo [lev 1, scr 0][fd: 22]
+May 18 22:18:18| CONN: Homo connected from 85-23-26-66.bb.dnainternet.fi
+FILE: Cannot open file intermud (No such file or directory)
+May 18 22:20:40| SYSTEM: RELOADing the Deamon
+May 18 22:20:40| PERROR MUDDNS: [110] Connection timed out
+May 18 22:20:50| CONN: Entry Rydis [lev 99999][fd: 6] from i7.serveirc.com
+FILE: Cannot open file intermud (No such file or directory)
+May 18 22:22:25| SYSTEM: RELOADing the Deamon
+May 18 22:22:25| PERROR MUDDNS: [110] Connection timed out
+May 18 22:22:32| CONN: Entry Homo [lev 1, scr 0][fd: 6]
+May 18 22:22:32| CONN: Homo connected from i7.serveirc.com
+May 18 22:24:11| CONN: Entry Rydis [lev 99999][fd: 22] from localhost.localdomain
+May 18 22:27:47| CONN: Entry Ukko [lev 1, scr 0][fd: 27]
+May 18 22:27:47| CONN: Ukko connected from a91-153-38-154.elisa-laajakaista.fi
+May 18 22:28:10| SUMMON: player Homo by Rydis from start1 to intro1.
+May 18 22:30:07| SNOOP: Rydis started SNOOPing Ukko.
+May 18 22:32:28| SUMMON: object greatsword by Rydis from waste19 to moor5.
+May 18 22:32:33| SUMMON: object shield by Rydis from ancient28 to moor5.
+May 18 22:32:37| SUMMON: mobile Armorer by Rydis from newvillage24 to moor5.
+May 18 22:33:10| ZAP: Rydis &+wZAPped&+w Armorer
+May 18 22:37:19| HEAL: Rydis healed Homo.
+May 18 22:40:20| CONN: Exit Ukko [lev 1, scr 0, str 56/56][fd: 27]
+May 18 23:12:55| CONN: Homo has been transported for being idle.
+
+May 19 06:42:37| CONN: Entry Rydis [lev 99999][fd: 27] from localhost.localdomain
+May 19 06:43:13| ZAP: Rydis &+wZAPped&+w Puff
+May 19 06:45:43| CONN: Exit Rydis [lev 99999][fd: 27]
+May 19 20:14:02| CONN: Entry Rydis [lev 99999][fd: 27] from localhost.localdomain
+May 19 20:42:12| CONN: Homo has been transported for being idle.
+
+May 19 21:24:12| CONN: Kicking linkdead player Homo out.
+May 19 21:24:12| CONN: Exit Homo [lev 1, scr 242, str 56/56][fd: -1]
+rm: cannot remove `/home/petria/code/C/pdirt/data//users_data.bak': No such file or directory
+May 19 22:22:26| BACK: Unknown error while performing backup.
+May 20 08:03:05| RESET: (all zones) by Rydis

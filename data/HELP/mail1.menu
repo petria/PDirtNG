@@ -1,0 +1,20 @@
+
+
+                                 -oOo-
+
+		 	 &+GpDIRT &+WMail Facility&*
+
+
+	Type the number of a message to read it. Additionally, you
+        may use the following commands (n denotes a message number)
+
+
+	r     	- reply to the last read message.
+	h     	- show message headers.
+	d n   	- delete a specified message.
+	u n   	- undelete a specified message.
+	?     	- print this menu
+        x,q   	- exit the mailer
+        i     	- print some info about this mailer.
+	*     	- enter a game command without leaving the mailer.
+

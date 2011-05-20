@@ -1,0 +1,88 @@
+&+cHere is a short list of commands. Use &+WHELP <command>&+c or &+WHELP <subject> &+cto
+&+cget more detailed information.
+&+bo&+B---------------------------------------&+bo&+B-----------------------------------&+bo
+&+B|&+W COMMUNICATION                         &+B| &+WMOVEMENT                          &+B|
+&+B|&+w say     gossip   shout  chat  tell    &+B|&+w north  east   south  west   up    &+B|
+&+B|&+w cemote  mail     beep   ask   noshout &+B|&+w down   follow lose   party  jump  &+B|
+&+B|&+w wish    converse actions  message     &+B}-----------------------------------&+bo
+&+B|&+w write   erase    nochat   nogossip    &+B|&+W ITEMS                             &+B|
+&+B}---------------------------------------{&+w get   give   drop   examine look  &+B|
+&+B|&+W UTILITY                               &+B|&+w wear  wield  remove push    lock  &+B|
+&+B|&+w compact autoexit  brief   bug    typo &+B|&+w open  close  unlock inventory     &+B|
+&+B|&+w nopuff  noweather cls     clear  quit &+B|&+w value eat    drink  turn    pull  &+B|
+&+B|&+w color   save      klock   wimpy       &+B}-----------------------------------{
+&+B|&+w sayback description  nofinger suggest &+B|&+W COMBAT                          &+B  |
+&+B|&+w scoreprompt  prompt  quickwriter      &+B|&+w autoeat  sleep   sit    stand &+B    |
+&+B}---------------------------------------{ &+wkill     wake    flee   wield    &+B |
+&+B|&+W INFORMATION                          &+B |&+w trance   wimpy                  &+B  |
+&+B|&+w info     qinfo     help      credits  &+bo&+B-----------------------------------{
+&+B|&+w couples  bulletin  powers    rulers   version    who      users    email  &+B|
+&+B|&+w laston   score     quests    qdone    config     'info policy'   oldlogin &+B|
+&+B}---------------------------------------------------------------------------{
+&+B| &+WGROUPING: &+wpcreate  padd  pname  pfollow  psay  pstat  pshare  pleave ...  &+B|
+&+bo&+B---------------------------------------------------------------------------&+bo&*
+%WIZARD
+&+cHere is a list of all &+WWizard commands&+c and normal commands the mortals have
+&+cto find out themselves (commands with a ! have been expanded for Wizards).
+&+bo&+B----------------------------------&+C=&+WoOo&+C=&+B------------------------------------&+bo
+&+B|&+W SPELLS                             &+B|&+W TRAVEL MESSAGES                      &+B|
+&+B|&+w summon!  pose     bang    where    &+B|&+w setin        setout      setsit      &+B|
+&+B|&+w missile  frost    shock   cure     &+B|&+w setstand     setmin      setmout     &+B|
+&+B|&+w fireball vis/inv  blind   deafen   &+B|&+w settrvict    saveset     setvin      &+B|
+&+B|&+w bang     heal     cripple scan     &+B|&+w setvout      settrroom   review      &+B|
+&+B|&+w mute     healall  tiptoe  trace    &+B|&+w setqin       setqout     settrenter  &+B|
+&+B|&+w immortal/asmortal cast             &+B|&+w setstart                             &+B|
+&+B}------------------------------------&+bo&+B--------------------------------------{
+&+B|&+W UTILITY                            &+B|&+W COMMUNICATION                        &+B|
+&+B|&+w change   setstart   home    pflags &+B|&+w wiz    nowiz   echo    echoall emote &+B|
+&+B|&+w nobattle exorcise   alias   quiet  &+B|&+w emoteall  noshout  nocomm  aberchat  &+B|
+&+B|&+w reset    lflags     set     goto   &+B}--------------------------------------{
+&+B|&+w noinven  resurrect  mflags  in/at  &+B|&+W INFORMATION                          &+B|
+&+B|&+w calendar noslain    mask    aloof  &+B|&+w mobiles  mleft    objects    show    &+B|
+&+B|&+w war      peace      start   stop   &+B|&+w ustats   stats    users      acct    &+B|
+&+B|&+w prompt   away       busy    wizlock&+B|&+w zones    global   locations          &+B|
+&+bo&+B------------------------------------&+bo&+B--------------------------------------&+bo
+%ARCHWIZARD
+%BREAK
+&+cExtra &+WArchWizard commands&+c. Some Wizard commands have extra powers now.
+&+go&+G------------------------------&+go&+G--------------------------------------------&+go
+&+G|&+W UTILITY                      &+G|&+W COMMUNICATION                              &+G|
+&+G|&+w system   frob    tournament  &+G|&+w awiz  noawiz   echoto   echoall   emoteto  &+G|
+&+G|&+w raw      nraw    syslog      &+G}--------------------------------------------{
+&+G|&+w log      atstat  warn        &+G|&+W CREATION                                   &+G|
+&+G}------------------------------{&+w load   store   destruct   clone   destroy  &+G|
+&+G|&+W ADDITIONAL SPELLS            &+go&+G--------------------------------------------{
+&+G|&+w healall   saveall    timeout     zap      snoop    tiptoe   warnzap  jail &+G|
+&+G}---------------------------------------------------------------------------{
+&+G|&+W LOGS  &*syslog    aberchatlog    buglog    suggestlog                       &+G| 
+&+go&+G---------------------------------------------------------------------------&+go
+%DEMIGOD
+%BREAK
+&+G| &+WDGOD    &+w- A seperate channel for Demi-Gods and up.                        &+G|
+&+G| &+WNODGOD  &+w- Turn of the Demi-God channel.                                   &+G|
+&+G| &+WREBOOT  &+w- Do a reboot of the MUD.                                         &+G|
+&+G| &+WUPDATE  &+w- Same as Reboot, except it restores the world in the old state   &+G|
+&+G| &+WDELAY   &+w- Activate a Delayed Reboot. (MUD will reboot on next reset)      &+G|
+&+G| &+WSOCINFO &+w- Show all sockets used.                                          &+G|
+&+G| &+WKILLSOC &+w- Kill a certain socket (handy for removing hung sockets)         &+G|
+&+G| &+WWLOAD   &+w- Show current CPU usage and workload of the server               &+G|
+&+G| &+WBAN     &+w- Ban/lock a player/host from the MUD                             &+G|
+&+G| &+WUNBAN   &+w- In case you need it                                             &+G|
+&+go&+G---------------------------------------------------------------------------&+go
+%GOD
+%BREAK
+&+WO&+C=&+c---------------------------------&+C=&+WoOo&+C=&+c-----------------------------------&+C=&+WO
+&+C|                            &+WGod/Master Commands                            &+C|
+&+W|&+C=&+c=========================================================================&+C=&+W|
+&+C| &+WDEBUG   &+w- Check Global data, user parsers etc etc.                        &+C|
+&+c| &+WCODE    &+w- Sets or removes coding flag from who list.                      &+c|
+&+c| &+WSYSLOG  &+w- Display selected part of syslog.                                &+c|
+&+c| &+WSHUTDOWN&+w- Close the MUD for all non-operators, disables login, and show a &+c|
+&+c|           &+wgiven message.                                                  &+c|
+&+c| &+WCRASH   &+w- Same as shutdown, but also kills the MUD-Server as well.        &+c|
+&+c| &+WOPENGAME&+w- Reopens the MUD-server after a shutdown.                        &+c|
+&+c| &+WDELETE  &+w- Deletes a player from the system data-files.                    &+c|
+&+c| &+WGOD     &+w- God Communication channel.                                      &+c|
+&+c| &+WNOGOD   &+w- Turns the God-channel off.                                      &+c|
+&+C| &+WSIGNAL  &+w- Crash the MUD using a specified signal.                         &+C|
+&+WO&+C=&+c-------------------------------------------------------------------------&+C=&+WO

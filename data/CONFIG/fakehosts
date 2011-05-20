@@ -1,0 +1,8 @@
+# Fake Hostnames - pDirt 1996
+# Mask the player name to a fake hostname
+# This is how hosts should be entered:
+#            <real name>	<fake hostname>
+#
+
+Marty	        darkside.moon 
+
