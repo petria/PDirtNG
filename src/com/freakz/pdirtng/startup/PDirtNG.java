@@ -1,6 +1,6 @@
 package com.freakz.pdirtng.startup;
 
-import com.freakz.pdirtng.World;
+import com.freakz.pdirtng.objects.World;
 import com.freakz.pdirtng.objects.Bootstrap;
 import com.freakz.pdirtng.objects.Location;
 import com.freakz.pdirtng.objects.MudObject;
@@ -23,12 +23,12 @@ public class PDirtNG {
 
     World world = World.getInstance();
 
-    List<MudObject> locations = world.getLocations();
-    for (MudObject mObj : locations) {
-      Location location = (Location) mObj;
+    List<Location> locations = world.getLocations();
+    for (Location location: locations) {
       System.out.println("------: " + location.getId() + " -> " + location.getObjectId());
-      System.out.println(location.getShortDescription() + " [" + location.getZoneId() + "]");
+      System.out.println(location.getShortDescriptionNoColor() + " [" + location.getZoneId() + "]");
       System.out.println(location.getLongDescription());
+      System.out.println(location.getExitsString());
     }
 
   }

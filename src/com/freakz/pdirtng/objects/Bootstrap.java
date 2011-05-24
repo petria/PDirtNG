@@ -1,7 +1,5 @@
 package com.freakz.pdirtng.objects;
 
-import com.freakz.pdirtng.World;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

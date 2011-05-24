@@ -13,7 +13,7 @@ public class World {
 
   private static World ourInstance = new World();
 
-  private List<MudObject> locations = new ArrayList<MudObject>();
+  private List<Location> locations = new ArrayList<Location>();
 
 
   public static World getInstance() {
@@ -27,8 +27,16 @@ public class World {
     this.locations.add(location);
   }
 
-  public List<MudObject> getLocations() {
+  public List<Location> getLocations() {
     return locations;
   }
 
+  public Location findLocationById(int exitId) {
+    for (Location location : locations) {
+      if (location.getId() == exitId) {
+        return location;
+      }
+    }
+    return null;
+  }
 }
