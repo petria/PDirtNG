@@ -25,7 +25,7 @@ public class Location extends MudObject {
 
   private static final int NUM_OF_EXITS = 10;
 
-  private int[] exits = new int[NUM_OF_EXITS];
+  private int exits[] = new int[NUM_OF_EXITS];
 
   private int id;
   private int zoneId;
@@ -49,6 +49,12 @@ public class Location extends MudObject {
   public String getShortDescription() {
     return shortDescription;
   }
+
+  public String getShortDescriptionNoColor() {
+    String stripped = shortDescription.replaceAll("\\&\\+W|\\&\\*\\^", "");
+    return stripped;
+  }
+
 
   public void setShortDescription(String shortDescription) {
     this.shortDescription = shortDescription;
@@ -77,4 +83,21 @@ public class Location extends MudObject {
   public void setFlags(String flags) {
     this.flags = flags;
   }
+
+  public String getExitsString() {
+    String exits = "Obivious exits are:\n";
+    // North
+    for (int dir = 0; dir < NUM_OF_EXITS; dir++) {
+      int exitId = this.exits[dir];
+      if (exitId == 0) {
+        continue;
+      }
+      Location exit = World.getInstance().findLocationById(exitId);
+      if (exit != null) {
+        exits += String.format("[%-9s] %s\n", EXIT_NAMES[dir], exit.getShortDescriptionNoColor());
+      }
+    }
+    return exits;
+  }
+
 }
