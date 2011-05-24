@@ -1,7 +1,4 @@
-package com.freakz.pdirtng;
-
-import com.freakz.pdirtng.objects.Location;
-import com.freakz.pdirtng.objects.MudObject;
+package com.freakz.pdirtng.objects;
 
 import java.util.ArrayList;
 import java.util.List;
