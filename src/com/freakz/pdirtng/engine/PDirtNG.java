@@ -37,20 +37,36 @@ public class PDirtNG {
   }
 
   public Response handleLine(Player player, String line) {
-    String txt = "Mud response: " + line + "\n";
+    String txt = null;
     int status = STATUS_OK;
     if (line.equals("quit")) {
       status = STATUS_QUIT;
       txt = "Bye bye!\n";
-    } else
-    if (line.equals("look")) {
+    } else if (line.equals("look")) {
       Location location = world.findLocationById(player.getLocation());
       String lookReply = "";
       lookReply += ("------: " + location.getId() + " -> " + location.getObjectId() + "\n");
-      lookReply += (location.getShortDescriptionNoColor() + " [" + location.getZoneId() + "]"+ "\n");
+      lookReply += (location.getShortDescriptionNoColor() + " [" + location.getZoneId() + "]" + "\n");
       lookReply += (location.getLongDescription() + "\n");
       lookReply += (location.getExitsString() + "\n");
       txt = lookReply;
+    } else if (line.matches("n|e|s|w|u|d")) {
+      int dir = Location.resolveDir(line);
+      Location location = world.findLocationById(player.getLocation());
+      int moveToId = location.getExits()[dir];
+      if (moveToId != 0) {
+        location = world.findLocationById(moveToId);
+        String lookReply = "";
+        lookReply += ("------: " + location.getId() + " -> " + location.getObjectId() + "\n");
+        lookReply += (location.getShortDescriptionNoColor() + " [" + location.getZoneId() + "]" + "\n");
+        lookReply += (location.getLongDescription() + "\n");
+        lookReply += (location.getExitsString() + "\n");
+        txt = lookReply;
+        player.setLocation(moveToId);
+      } else {
+        txt = "Can't go that way!\n";
+      }
+
     }
     Response response = new Response(txt, status);
 

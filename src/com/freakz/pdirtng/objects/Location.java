@@ -23,6 +23,9 @@ public class Location extends MudObject {
   public static String[] EXIT_NAMES =
       {"North", "East", "South", "West", "Up", "Down", "NorthEast", "NorthWest", "SouthEast", "SouthWest"};
 
+  public static String[] EXIT_NAMES_SHORT =
+      {"n", "e", "s", "w", "u", "d", "ne", "nw", "se", "sw"};
+
   private static final int NUM_OF_EXITS = 10;
 
   private int exits[] = new int[NUM_OF_EXITS];
@@ -100,4 +103,20 @@ public class Location extends MudObject {
     return exits;
   }
 
+  public static int resolveDir(String direction) {
+
+    for (int i = 0; i < NUM_OF_EXITS; i++) {
+      if (EXIT_NAMES_SHORT[i].equals(direction)) {
+        return i;
+      }
+    }
+    for (int i = 0; i < NUM_OF_EXITS; i++) {
+      String dir = EXIT_NAMES[i].toLowerCase();
+      if (dir.startsWith(direction)) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
 }
