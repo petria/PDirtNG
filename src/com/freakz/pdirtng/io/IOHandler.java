@@ -1,11 +1,9 @@
 package com.freakz.pdirtng.io;
 
 import com.freakz.pdirtng.engine.PDirtNG;
+import com.freakz.pdirtng.engine.Response;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -17,56 +15,61 @@ import java.util.Deque;
  */
 public class IOHandler extends Thread {
 
-    private PDirtNG engine;
-    private InputStream inputStream;
-    ResponseHandler responseHandler;
-    private boolean running;
+  private PDirtNG engine;
+  private InputStream inputStream;
+  private boolean running;
+  protected IOClient IOClient;
 
-    private Deque<Handler> handlerStack = new ArrayDeque<Handler>();
+  private Deque<Handler> handlerStack = new ArrayDeque<Handler>();
 
-    public IOHandler(PDirtNG engine, InputStream inputStream, ResponseHandler responseHandler) {
-        this.engine = engine;
-        this.inputStream = inputStream;
-        this.responseHandler = responseHandler;
-    }
+  public IOHandler(PDirtNG engine, InputStream inputStream, IOClient IOClient) {
+    this.engine = engine;
+    this.inputStream = inputStream;
+    this.IOClient = IOClient;
+  }
 
-    public void start() {
-        this.engine.addIOHandler(this);
-    }
+  public void start() {
+    Thread t = new Thread(this);
+    t.start();
+  }
 
-    private String getLine() {
-        String line;
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-        try {
-            line = br.readLine();
-        } catch (IOException e) {
-            line = null;
-            e.printStackTrace();
+  public Handler getHandler() {
+    return this.handlerStack.peek();
+  }
+
+  public void run() {
+    this.engine.addIOHandler(this);
+
+    GameHandler gameHandler = new GameHandler(this, this.engine);
+    handlerStack.push(gameHandler);
+
+    running = true;
+
+    while (running) {
+      String prompt = getHandler().getPrompt();
+      if (prompt != null) {
+        IOClient.print(prompt);
+      }
+      String line = IOClient.getLine();
+      if (line != null) {
+        Response response = pushLineToHandler(line);
+        IOClient.print(response.getResponse());
+        if (response.getStatus() == PDirtNG.STATUS_QUIT) {
+          running = false;
         }
-        return line;
+      } else {
+        running = false;
+      }
     }
 
-    public void run() {
-        running = true;
-        while (running) {
-            String line = getLine();
-            if (line != null) {
-                pushLineToHandler(line);
-            } else {
-                running = false;
-            }
-        }
+    this.engine.delIOHandler(this);
+    IOClient.quit();
+  }
 
-        this.engine.delIOHandler(this);
-    }
+  private Response pushLineToHandler(String line) {
+    Handler handler = getHandler();
+    Response response = handler.handleLine(line);
+    return response;
+  }
 
-    private void pushLineToHandler(String line) {
-        Handler handler = this.handlerStack.peek();
-        String response = handler.handleLine(line);
-        this.responseHandler.handleResponse(response);
-    }
-
-    public void sendReply(String reply) {
-        pushLineToHandler(reply);
-    }
 }

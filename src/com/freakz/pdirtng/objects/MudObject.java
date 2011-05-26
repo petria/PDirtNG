@@ -8,18 +8,18 @@ package com.freakz.pdirtng.objects;
  */
 public class MudObject {
 
-    private static long objectIdCounter = 0;
+  private static long objectIdCounter = 0;
 
-    private long objectId;
+  private long objectId;
 
-    public MudObject() {
-        objectIdCounter++;
-        this.objectId = objectIdCounter;
-    }
+  public MudObject() {
+    objectIdCounter++;
+    this.objectId = objectIdCounter;
+  }
 
-    public long getObjectId() {
-        return objectId;
-    }
+  public long getObjectId() {
+    return objectId;
+  }
 
 
 }

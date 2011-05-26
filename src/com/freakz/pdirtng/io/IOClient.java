@@ -6,7 +6,11 @@ package com.freakz.pdirtng.io;
  *
  * @author Petri Airio
  */
-public interface ResponseHandler {
+public interface IOClient {
 
-    void handleResponse(String response);
+  String getLine();
+
+  void print(String line);
+
+  void quit();
 }

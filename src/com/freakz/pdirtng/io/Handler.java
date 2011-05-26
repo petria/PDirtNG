@@ -1,5 +1,7 @@
 package com.freakz.pdirtng.io;
 
+import com.freakz.pdirtng.engine.Response;
+
 /**
  * Date: 25.5.2011
  * Time: 14:35
@@ -8,6 +10,8 @@ package com.freakz.pdirtng.io;
  */
 public interface Handler {
 
-    String handleLine(String line);
+  String getPrompt();
+
+  Response handleLine(String line);
 
 }

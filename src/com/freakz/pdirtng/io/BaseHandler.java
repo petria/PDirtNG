@@ -1,23 +1,24 @@
 package com.freakz.pdirtng.io;
 
+import com.freakz.pdirtng.engine.PDirtNG;
+import com.freakz.pdirtng.engine.Response;
+
 /**
  * Date: 25.5.2011
  * Time: 14:57
  *
- * @author Petri Airio, Landis+Gyr Oy
+ * @author Petri Airio
  */
 public abstract class BaseHandler implements Handler {
 
-    protected IOHandler ioHandler;
+  protected IOHandler ioHandler;
+  protected PDirtNG engine;
 
-        public BaseHandler(IOHandler ioHandler) {
-        this.ioHandler = ioHandler;
-    }
+  public BaseHandler(IOHandler ioHandler, PDirtNG engine) {
+    this.ioHandler = ioHandler;
+    this.engine = engine;
+  }
 
-    public abstract String handleLine(String line);
-
-    public void sendReply(String reply) {
-        ioHandler.sendReply(reply);
-    }
+  public abstract Response handleLine(String line);
 
 }
