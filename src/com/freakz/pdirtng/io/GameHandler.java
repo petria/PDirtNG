@@ -2,6 +2,7 @@ package com.freakz.pdirtng.io;
 
 import com.freakz.pdirtng.engine.PDirtNG;
 import com.freakz.pdirtng.engine.Response;
+import com.freakz.pdirtng.objects.Player;
 
 /**
  * Date: 26.5.2011
@@ -21,8 +22,8 @@ public class GameHandler extends BaseHandler {
   }
 
   @Override
-  public Response handleLine(String line) {
-    Response response = engine.handleLine(line);
+  public Response handleLine(Player player, String line) {
+    Response response = engine.handleLine(player, line);
     return response;
   }
 

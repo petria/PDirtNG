@@ -2,6 +2,7 @@ package com.freakz.pdirtng.io;
 
 import com.freakz.pdirtng.engine.PDirtNG;
 import com.freakz.pdirtng.engine.Response;
+import com.freakz.pdirtng.objects.Player;
 
 import java.io.InputStream;
 import java.util.ArrayDeque;
@@ -19,6 +20,7 @@ public class IOHandler extends Thread {
   private InputStream inputStream;
   private boolean running;
   protected IOClient IOClient;
+  private Player player;
 
   private Deque<Handler> handlerStack = new ArrayDeque<Handler>();
 
@@ -41,34 +43,45 @@ public class IOHandler extends Thread {
     this.engine.addIOHandler(this);
 
     GameHandler gameHandler = new GameHandler(this, this.engine);
-    handlerStack.push(gameHandler);
+    this.handlerStack.push(gameHandler);
+    LoginHandler loginHandler = new LoginHandler(this, this.engine);
+    this.handlerStack.push(loginHandler);
 
-    running = true;
+    this.running = true;
 
-    while (running) {
+    while (this.running) {
       String prompt = getHandler().getPrompt();
       if (prompt != null) {
-        IOClient.print(prompt);
+        this.IOClient.print(prompt);
       }
-      String line = IOClient.getLine();
+      String line = this.IOClient.getLine();
       if (line != null) {
         Response response = pushLineToHandler(line);
-        IOClient.print(response.getResponse());
-        if (response.getStatus() == PDirtNG.STATUS_QUIT) {
-          running = false;
+        if (response.getResponse() != null) {
+          this.IOClient.print(response.getResponse());
         }
+
+        if (response.getStatus() == PDirtNG.STATUS_LOGIN_OK) {
+          this.handlerStack.pop();
+          this.player = new Player(loginHandler.getLogin());
+          this.player.setLocation(-1906);
+        } else
+        if (response.getStatus() == PDirtNG.STATUS_QUIT) {
+          this.running = false;
+        }
+
       } else {
-        running = false;
+        this.running = false;
       }
     }
 
     this.engine.delIOHandler(this);
-    IOClient.quit();
+    this.IOClient.quit();
   }
 
   private Response pushLineToHandler(String line) {
     Handler handler = getHandler();
-    Response response = handler.handleLine(line);
+    Response response = handler.handleLine(this.player, line);
     return response;
   }
 
