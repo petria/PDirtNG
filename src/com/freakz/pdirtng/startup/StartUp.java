@@ -2,6 +2,7 @@ package com.freakz.pdirtng.startup;
 
 import com.freakz.pdirtng.engine.PDirtNG;
 import com.freakz.pdirtng.io.KonsoleClient;
+import com.freakz.pdirtng.io.SocketServer;
 import com.freakz.pdirtng.objects.Bootstrap;
 
 /**
@@ -19,6 +20,10 @@ public class StartUp {
     boot.loadLocations();
 
     PDirtNG engine = new PDirtNG();
+
+    SocketServer socketServer = new SocketServer(engine);
+    socketServer.start();
+
     KonsoleClient konsole = new KonsoleClient(engine);
     konsole.start();
 
