@@ -56,7 +56,7 @@ public class IOHandler extends Thread {
         this.IOClient.print(prompt);
       }
       String line = this.IOClient.getLine();
-      if (line != null) {
+      if (line != null && line.length() > 0) {
         Response response = pushLineToHandler(line);
         if (response.getResponse() != null) {
           this.IOClient.print(response.getResponse());
@@ -65,13 +65,12 @@ public class IOHandler extends Thread {
         if (response.getStatus() == PDirtNG.STATUS_LOGIN_OK) {
           this.handlerStack.pop();
           this.player = new Player(loginHandler.getLogin(), this);
-          this.player.setLocation(engine.getWorld().findLocationById(-1906), Location.EXIT_UNKNOWN, Location.EXIT_UNKNOWN);
+          this.player.setLocation(engine.getWorld().findLocationById(-1906), Location.EXIT_ENTERED_GAME, Location.EXIT_ENTERED_GAME);
         } else if (response.getStatus() == PDirtNG.STATUS_QUIT) {
+          this.player.setLocation(null, Location.EXIT_QUIT_GAME, Location.EXIT_QUIT_GAME);
           this.running = false;
         }
 
-      } else {
-        this.running = false;
       }
     }
 
@@ -87,6 +86,10 @@ public class IOHandler extends Thread {
 
   public void sendLine(String message) {
     this.IOClient.print(message);
+  }
+
+  public Player getPlayer() {
+    return player;
   }
 
 }

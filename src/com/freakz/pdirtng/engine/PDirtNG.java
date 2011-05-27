@@ -60,7 +60,24 @@ public class PDirtNG {
         txt = "Can't go that way!\n";
       }
 
+    } else if (line.matches("who")) {
+      txt = "Level        Player\n";
+      txt += "-----------------------------------------------------------------------------\n";
+      int count = 0;
+      for (IOHandler ioHandler : this.clients) {
+        String level = "LEVEL";
+        String name = ioHandler.getPlayer().getName();
+        txt += String.format("[%-10s] %s\n", level, name);
+        count++;
+      }
+      txt += "-----------------------------------------------------------------------------\n";
+      txt += String.format("Total of %d visible users.\n", count);
+
+    } else {
+      txt = "I beg your pardon?\n";
     }
+
+
     Response response = new Response(txt, status);
 
     return response;

@@ -46,7 +46,9 @@ public class Player extends MudObject {
       this.location.removeMobile(this, goneTo);
     }
     this.location = location;
-    this.location.addMobile(this, arrivedFrom);
+    if (location != null) {
+      this.location.addMobile(this, arrivedFrom);
+    }
   }
 
   public String toString() {

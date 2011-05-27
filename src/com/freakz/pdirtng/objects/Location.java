@@ -23,7 +23,10 @@ public class Location extends MudObject {
   public static int EXIT_NORTHWEST = 7;
   public static int EXIT_SOUTHEAST = 8;
   public static int EXIT_SOUTHWEST = 9;
+
   public static int EXIT_UNKNOWN = 100;
+  public static int EXIT_ENTERED_GAME = 101;
+  public static int EXIT_QUIT_GAME = 102;
 
 
   public static String[] EXIT_NAMES =
@@ -141,11 +144,18 @@ public class Location extends MudObject {
 
   public void addMobile(Player mobile, int arrivedFrom) {
     this.mobiles.add(mobile);
-    messageToRoom(mobile.getName() + " has arrived.\n");
+    if (arrivedFrom == EXIT_ENTERED_GAME) {
+      messageToRoom(mobile.getName() + " has entered game.\n");
+    } else {
+      messageToRoom(mobile.getName() + " has arrived.\n");
+    }
   }
 
   public void removeMobile(Player mobile, int goneTo) {
     this.mobiles.remove(mobile);
+    if (goneTo == EXIT_QUIT_GAME) {
+      messageToRoom(mobile.getName() + " has left game.\n");
+    } else
     if (goneTo != EXIT_UNKNOWN) {
       messageToRoom(mobile.getName() + " has gone " + EXIT_NAMES[goneTo] + "\n");
     }
