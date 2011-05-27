@@ -55,7 +55,7 @@ public class PDirtNG {
       if (moveToId != 0) {
         location = world.findLocationById(moveToId);
         txt = location.look();
-        player.setLocation(location);
+        player.setLocation(location, Location.EXIT_UNKNOWN, dir);
       } else {
         txt = "Can't go that way!\n";
       }

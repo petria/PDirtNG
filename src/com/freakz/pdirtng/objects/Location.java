@@ -1,5 +1,7 @@
 package com.freakz.pdirtng.objects;
 
+import com.freakz.pdirtng.io.IOHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class Location extends MudObject {
   public static int EXIT_NORTHWEST = 7;
   public static int EXIT_SOUTHEAST = 8;
   public static int EXIT_SOUTHWEST = 9;
+  public static int EXIT_UNKNOWN = 100;
 
 
   public static String[] EXIT_NAMES =
@@ -38,12 +41,12 @@ public class Location extends MudObject {
   private String flags;
   private String shortDescription;
   private String longDescription;
-  private List<MudObject> mobiles;
+  private List<Player> mobiles;
 
   public Location(int id) {
     super();
     this.id = id;
-    this.mobiles = new ArrayList<MudObject>();
+    this.mobiles = new ArrayList<Player>();
   }
 
   public int[] getExits() {
@@ -136,11 +139,25 @@ public class Location extends MudObject {
     return lookReply;
   }
 
-  public void addMobile(MudObject mobile) {
+  public void addMobile(Player mobile, int arrivedFrom) {
     this.mobiles.add(mobile);
+    messageToRoom(mobile.getName() + " has arrived.\n");
   }
 
-  public void removeMobile(MudObject mobile) {
+  public void removeMobile(Player mobile, int goneTo) {
     this.mobiles.remove(mobile);
+    if (goneTo != EXIT_UNKNOWN) {
+      messageToRoom(mobile.getName() + " has gone " + EXIT_NAMES[goneTo] + "\n");
+    }
   }
+
+  public void messageToRoom(String message) {
+    for (Player player : mobiles) {
+      IOHandler ioHandler = player.getIoHandler();
+      if (ioHandler != null) {
+        ioHandler.sendLine(message);
+      }
+    }
+  }
+
 }

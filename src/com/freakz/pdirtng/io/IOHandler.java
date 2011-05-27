@@ -2,6 +2,7 @@ package com.freakz.pdirtng.io;
 
 import com.freakz.pdirtng.engine.PDirtNG;
 import com.freakz.pdirtng.engine.Response;
+import com.freakz.pdirtng.objects.Location;
 import com.freakz.pdirtng.objects.Player;
 
 import java.io.InputStream;
@@ -63,8 +64,8 @@ public class IOHandler extends Thread {
 
         if (response.getStatus() == PDirtNG.STATUS_LOGIN_OK) {
           this.handlerStack.pop();
-          this.player = new Player(loginHandler.getLogin());
-          this.player.setLocation(engine.getWorld().findLocationById(-1906));
+          this.player = new Player(loginHandler.getLogin(), this);
+          this.player.setLocation(engine.getWorld().findLocationById(-1906), Location.EXIT_UNKNOWN, Location.EXIT_UNKNOWN);
         } else if (response.getStatus() == PDirtNG.STATUS_QUIT) {
           this.running = false;
         }
@@ -82,6 +83,10 @@ public class IOHandler extends Thread {
     Handler handler = getHandler();
     Response response = handler.handleLine(this.player, line);
     return response;
+  }
+
+  public void sendLine(String message) {
+    this.IOClient.print(message);
   }
 
 }

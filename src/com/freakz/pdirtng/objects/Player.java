@@ -1,5 +1,7 @@
 package com.freakz.pdirtng.objects;
 
+import com.freakz.pdirtng.io.IOHandler;
+
 /**
  * Date: 26.5.2011
  * Time: 13:55
@@ -9,12 +11,14 @@ package com.freakz.pdirtng.objects;
 public class Player extends MudObject {
 
   private String name;
+  private IOHandler ioHandler;
   private String password;
 
   private Location location;
 
-  public Player(String name) {
+  public Player(String name, IOHandler ioHandler) {
     this.name = name;
+    this.ioHandler = ioHandler;
   }
 
   public String getName() {
@@ -37,16 +41,19 @@ public class Player extends MudObject {
     return location;
   }
 
-  public void setLocation(Location location) {
+  public void setLocation(Location location, int arrivedFrom, int goneTo) {
     if (this.location != null) {
-      this.location.removeMobile(this);
+      this.location.removeMobile(this, goneTo);
     }
     this.location = location;
-    this.location.addMobile(this);
+    this.location.addMobile(this, arrivedFrom);
   }
 
   public String toString() {
     return getName() + " is here.";
   }
 
+  public IOHandler getIoHandler() {
+    return ioHandler;
+  }
 }
