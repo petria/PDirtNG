@@ -64,9 +64,8 @@ public class IOHandler extends Thread {
         if (response.getStatus() == PDirtNG.STATUS_LOGIN_OK) {
           this.handlerStack.pop();
           this.player = new Player(loginHandler.getLogin());
-          this.player.setLocation(-1906);
-        } else
-        if (response.getStatus() == PDirtNG.STATUS_QUIT) {
+          this.player.setLocation(engine.getWorld().findLocationById(-1906));
+        } else if (response.getStatus() == PDirtNG.STATUS_QUIT) {
           this.running = false;
         }
 

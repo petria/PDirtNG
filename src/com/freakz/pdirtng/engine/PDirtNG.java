@@ -43,26 +43,19 @@ public class PDirtNG {
       status = STATUS_QUIT;
       txt = "Bye bye!\n";
     } else if (line.equals("look")) {
-      Location location = world.findLocationById(player.getLocation());
-      String lookReply = "";
-      lookReply += ("------: " + location.getId() + " -> " + location.getObjectId() + "\n");
-      lookReply += (location.getShortDescriptionNoColor() + " [" + location.getZoneId() + "]" + "\n");
-      lookReply += (location.getLongDescription() + "\n");
-      lookReply += (location.getExitsString() + "\n");
-      txt = lookReply;
+
+      Location location = player.getLocation();
+      txt = location.look();
+
     } else if (line.matches("n|e|s|w|u|d")) {
+
       int dir = Location.resolveDir(line);
-      Location location = world.findLocationById(player.getLocation());
+      Location location = player.getLocation();
       int moveToId = location.getExits()[dir];
       if (moveToId != 0) {
         location = world.findLocationById(moveToId);
-        String lookReply = "";
-        lookReply += ("------: " + location.getId() + " -> " + location.getObjectId() + "\n");
-        lookReply += (location.getShortDescriptionNoColor() + " [" + location.getZoneId() + "]" + "\n");
-        lookReply += (location.getLongDescription() + "\n");
-        lookReply += (location.getExitsString() + "\n");
-        txt = lookReply;
-        player.setLocation(moveToId);
+        txt = location.look();
+        player.setLocation(location);
       } else {
         txt = "Can't go that way!\n";
       }
@@ -73,4 +66,7 @@ public class PDirtNG {
     return response;
   }
 
+  public World getWorld() {
+    return this.world;
+  }
 }

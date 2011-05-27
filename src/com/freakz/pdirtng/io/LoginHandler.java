@@ -33,13 +33,16 @@ public class LoginHandler extends BaseHandler {
     Response response = new Response();
     switch (state) {
       case STATE_GET_LOGIN:
-        if (line.equalsIgnoreCase("Rydis")) {
+        login = line;
+        response.setResponse("name ok!\n");
+        state++;
+/*        if (line.equalsIgnoreCase("Rydis")) {
           login = line;
           response.setResponse("name ok!\n");
           state++;
         } else {
           response.setResponse("name nok!\n");
-        }
+        }*/
         break;
       case STATE_GET_PASSWD:
         if (line.equalsIgnoreCase("1234")) {

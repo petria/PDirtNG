@@ -1,5 +1,8 @@
 package com.freakz.pdirtng.objects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Date: 20.5.2011
  * Time: 13:09
@@ -35,10 +38,12 @@ public class Location extends MudObject {
   private String flags;
   private String shortDescription;
   private String longDescription;
+  private List<MudObject> mobiles;
 
   public Location(int id) {
     super();
     this.id = id;
+    this.mobiles = new ArrayList<MudObject>();
   }
 
   public int[] getExits() {
@@ -116,7 +121,26 @@ public class Location extends MudObject {
         return i;
       }
     }
-
     return -1;
+  }
+
+  public String look() {
+    String lookReply = "";
+    lookReply += ("------: " + getId() + " -> " + getObjectId() + "\n");
+    lookReply += (getShortDescriptionNoColor() + " [" + getZoneId() + "]" + "\n");
+    lookReply += (getLongDescription());
+    for (MudObject mobile : mobiles) {
+      lookReply += mobile.toString() + "\n";
+    }
+    lookReply += "\n" + getExitsString() + "\n";
+    return lookReply;
+  }
+
+  public void addMobile(MudObject mobile) {
+    this.mobiles.add(mobile);
+  }
+
+  public void removeMobile(MudObject mobile) {
+    this.mobiles.remove(mobile);
   }
 }

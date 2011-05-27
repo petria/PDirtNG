@@ -11,8 +11,7 @@ public class Player extends MudObject {
   private String name;
   private String password;
 
-  private int location;
-
+  private Location location;
 
   public Player(String name) {
     this.name = name;
@@ -34,12 +33,20 @@ public class Player extends MudObject {
     this.password = password;
   }
 
-  public int getLocation() {
+  public Location getLocation() {
     return location;
   }
 
-  public void setLocation(int location) {
+  public void setLocation(Location location) {
+    if (this.location != null) {
+      this.location.removeMobile(this);
+    }
     this.location = location;
+    this.location.addMobile(this);
+  }
+
+  public String toString() {
+    return getName() + " is here.";
   }
 
 }
