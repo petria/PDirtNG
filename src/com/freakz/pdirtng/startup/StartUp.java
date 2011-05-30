@@ -17,6 +17,7 @@ public class StartUp {
   public static void main(String[] args) throws Exception {
 
     Bootstrap boot = new Bootstrap();
+    boot.loadZones();
     boot.loadLocations();
 
     PDirtNG engine = new PDirtNG();

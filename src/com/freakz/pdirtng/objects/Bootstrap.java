@@ -14,7 +14,26 @@ public class Bootstrap {
 
 
   private static final String LOCATIONS_DATA_FILE = "data/locations";
+  private static final String ZONES_DATA_FILE = "data/zones";
 
+
+  public void loadZones() throws Exception {
+    File f = new File(ZONES_DATA_FILE);
+    BufferedReader br = new BufferedReader(new FileReader(f));
+    String line = br.readLine();
+    int zoneCount = Integer.parseInt(line);
+
+    for (int i = 0; i < zoneCount; i++) {
+      Zone zone = new Zone();
+      line = br.readLine();
+      String[] split = line.split(" ");
+      zone.setZoneName(split[0]);
+      zone.setStartLocation(Integer.parseInt(split[1]));
+      World.getInstance().addZone(zone);
+
+    }
+
+  }
 
   public void loadLocations() throws Exception {
 

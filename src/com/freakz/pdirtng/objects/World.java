@@ -14,6 +14,8 @@ public class World {
   private static World ourInstance = new World();
 
   private List<Location> locations = new ArrayList<Location>();
+  private List<Zone> zones = new ArrayList<Zone>();
+  private List<Object> objects = new ArrayList<Object>();
 
 
   public static World getInstance() {
@@ -24,6 +26,9 @@ public class World {
   }
 
   public void addLocation(Location location) {
+    int zoneId = location.getZoneId();
+    Zone zone = this.zones.get(zoneId);
+    zone.addLocation(location);
     this.locations.add(location);
   }
 
@@ -39,4 +44,15 @@ public class World {
     }
     return null;
   }
+
+  public void addZone(Zone zone) {
+    zone.setZoneId(this.zones.size());
+    this.zones.add(zone);
+  }
+
+  public void addObject(Object object) {
+    Zone zone = this.zones.get(object.getZoneId());
+    this.objects.add(object);
+  }
+
 }
