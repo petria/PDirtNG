@@ -137,6 +137,9 @@ public class Location extends MudObject {
     lookReply += ("------: " + getId() + " -> " + getObjectId() + "\n");
     lookReply += (getShortDescriptionNoColor() + " [" + getZoneId() + "]" + "\n");
     lookReply += (getLongDescription());
+    for (Object object : objects) {
+      lookReply += object.getDescriptions()[object.getState()] + "\n";
+    }
     for (MudObject mobile : mobiles) {
       lookReply += mobile.toString() + "\n";
     }

@@ -106,6 +106,33 @@ public class Bootstrap {
       object.setValue(Integer.parseInt(s[13]));
       object.setSize(Integer.parseInt(s[14]));
 
+      line = br.readLine(); // flags
+      String[] desc = new String[4];
+      String descX = null;
+      for (int j = 0; j < 4; j++) {
+        descX = "";
+        while (true) {
+          line = br.readLine();
+          descX += line;
+          if (descX.endsWith("^")) {
+            break;
+          }
+        }
+        desc[j] = descX;
+      }
+      object.setDescriptions(desc);
+
+      descX = "";
+      while (true) {
+        line = br.readLine();
+        descX += line;
+        if (descX.endsWith("^")) {
+          break;
+        }
+      }
+      object.setExamine(descX);
+      br.readLine(); // empty line between objects
+
       World.getInstance().addObject(object);
     }
 

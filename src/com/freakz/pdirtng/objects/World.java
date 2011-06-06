@@ -57,6 +57,13 @@ public class World {
 
   public void addObject(Object object) {
     Zone zone = this.zones.get(object.getZoneId());
+    zone.addObject(object);
+
+    Location location = findLocationById(object.getLocation());
+    if (location != null) {
+      location.addObject(object);
+    }
+
     this.objects.add(object);
   }
 

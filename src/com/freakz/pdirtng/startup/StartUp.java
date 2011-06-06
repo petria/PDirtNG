@@ -19,7 +19,7 @@ public class StartUp {
     Bootstrap boot = new Bootstrap();
     boot.loadZones();
     boot.loadLocations();
-//    boot.loadObjects();
+    boot.loadObjects();
 
     PDirtNG engine = new PDirtNG();
 
