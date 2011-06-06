@@ -45,11 +45,13 @@ public class Location extends MudObject {
   private String shortDescription;
   private String longDescription;
   private List<Player> mobiles;
+  private List<Object> objects;
 
   public Location(int id) {
     super();
     this.id = id;
     this.mobiles = new ArrayList<Player>();
+    this.objects = new ArrayList<Object>();
   }
 
   public int[] getExits() {
@@ -140,6 +142,14 @@ public class Location extends MudObject {
     }
     lookReply += "\n" + getExitsString() + "\n";
     return lookReply;
+  }
+
+  public void addObject(Object object) {
+    this.objects.add(object);
+  }
+
+  public void removeObject(Object object) {
+    this.objects.remove(object);
   }
 
   public void addMobile(Player mobile, int arrivedFrom) {

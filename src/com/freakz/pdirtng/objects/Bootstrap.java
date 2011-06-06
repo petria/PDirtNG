@@ -15,6 +15,7 @@ public class Bootstrap {
 
   private static final String LOCATIONS_DATA_FILE = "data/locations";
   private static final String ZONES_DATA_FILE = "data/zones";
+  private static final String OBJECTS_DATA_FILE = "data/objects";
 
 
   public void loadZones() throws Exception {
@@ -76,6 +77,36 @@ public class Bootstrap {
       location.setLongDescription(desc);
       World.getInstance().addLocation(location);
 
+    }
+  }
+
+  public void loadObjects() throws Exception {
+    File f = new File(OBJECTS_DATA_FILE);
+    BufferedReader br = new BufferedReader(new FileReader(f));
+    String line = br.readLine();
+    int objectCount = Integer.parseInt(line);
+
+    for (int i = 0; i < objectCount; i++) {
+      Object object = new Object();
+      line = br.readLine();
+      String[] s = line.split(" ");
+      object.setName(s[0]);
+      object.setAltName(s[1]);
+      object.setZoneId(Integer.parseInt(s[2]));
+      object.setId(Integer.parseInt(s[3]));
+      // s[4] =     int           onum;        number for the code to test so that cloned
+      object.setLinked(Integer.parseInt(s[5]));
+      object.setVisibility(Integer.parseInt(s[6]));
+      object.setCarried(Integer.parseInt(s[7]));
+      object.setLocation(Integer.parseInt(s[8]));
+      object.setState(Integer.parseInt(s[9]));
+      object.setDamage(Integer.parseInt(s[10]));
+      object.setArmor(Integer.parseInt(s[11]));
+      object.setMaxState(Integer.parseInt(s[12]));
+      object.setValue(Integer.parseInt(s[13]));
+      object.setSize(Integer.parseInt(s[14]));
+
+      World.getInstance().addObject(object);
     }
 
   }

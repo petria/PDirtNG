@@ -72,7 +72,9 @@ public class PDirtNG {
       }
       txt += "-----------------------------------------------------------------------------\n";
       txt += String.format("Total of %d visible users.\n", count);
-
+    } else if (line.startsWith("say ")) {
+      String say = line.replaceFirst("say ", "");
+      player.getLocation().messageToRoom(player.getName() + " says: " + say + "\n");
     } else {
       txt = "I beg your pardon?\n";
     }

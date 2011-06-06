@@ -25,6 +25,11 @@ public class World {
   private World() {
   }
 
+  /**
+   * Adds location to the World. Also adds Location to Zone it belongs to.
+   *
+   * @param location new Location
+   */
   public void addLocation(Location location) {
     int zoneId = location.getZoneId();
     Zone zone = this.zones.get(zoneId);
