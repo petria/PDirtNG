@@ -2,6 +2,7 @@ package com.freakz.pdirtng.engine;
 
 import com.freakz.pdirtng.io.IOHandler;
 import com.freakz.pdirtng.objects.Location;
+import com.freakz.pdirtng.objects.Object;
 import com.freakz.pdirtng.objects.Player;
 import com.freakz.pdirtng.objects.World;
 
@@ -42,6 +43,15 @@ public class PDirtNG {
     if (line.equals("quit")) {
       status = STATUS_QUIT;
       txt = "Bye bye!\n";
+    } else if (line.startsWith("examine ")) {
+      String target = line.replaceFirst("examine ", "");
+      Object object = this.world.findObjectByName(player.getLocation(), target);
+      if (object != null) {
+        txt = object.getExamine() + "\n";
+      } else {
+        txt = "You see nothing special.\n";
+      }
+
     } else if (line.equals("look")) {
 
       Location location = player.getLocation();

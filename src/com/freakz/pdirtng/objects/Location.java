@@ -155,6 +155,11 @@ public class Location extends MudObject {
     this.objects.remove(object);
   }
 
+  public List<Object> getObjects() {
+    return this.objects;
+  }
+
+
   public void addMobile(Player mobile, int arrivedFrom) {
     this.mobiles.add(mobile);
     if (arrivedFrom == EXIT_ENTERED_GAME) {

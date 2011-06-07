@@ -67,4 +67,12 @@ public class World {
     this.objects.add(object);
   }
 
+  public Object findObjectByName(Location location, String target) {
+    for (Object obj : location.getObjects()) {
+      if (obj.getName().startsWith(target) || obj.getAltName().startsWith(target)) {
+        return obj;
+      }
+    }
+    return null;
+  }
 }

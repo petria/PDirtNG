@@ -113,8 +113,8 @@ public class Bootstrap {
         descX = "";
         while (true) {
           line = br.readLine();
-          descX += line;
-          if (descX.endsWith("^")) {
+          descX += line.replaceAll("\\^", "");
+          if (line.endsWith("^")) {
             break;
           }
         }
@@ -125,7 +125,7 @@ public class Bootstrap {
       descX = "";
       while (true) {
         line = br.readLine();
-        descX += line;
+        descX += line.replaceAll("^", "");
         if (descX.endsWith("^")) {
           break;
         }
