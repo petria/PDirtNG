@@ -17,6 +17,7 @@ public class Zone extends MudObject {
 
   private List<Location> locations = new ArrayList<Location>();
   private List<Object> objects = new ArrayList<Object>();
+  private List<Mobile> mobiles = new ArrayList<Mobile>();
 
   public Zone() {
     super();
@@ -59,5 +60,7 @@ public class Zone extends MudObject {
   }
 
 
-
+  public void addMobile(Mobile mobile) {
+    this.mobiles.add(mobile);
+  }
 }

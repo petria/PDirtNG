@@ -20,6 +20,7 @@ public class StartUp {
     boot.loadZones();
     boot.loadLocations();
     boot.loadObjects();
+    boot.loadMobiles();
 
     PDirtNG engine = new PDirtNG();
 

@@ -8,26 +8,18 @@ import com.freakz.pdirtng.io.IOHandler;
  *
  * @author Petri Airio
  */
-public class Player extends MudObject {
+public class Player extends Mobile {
 
-  private String name;
   private IOHandler ioHandler;
   private String password;
 
   private Location location;
 
   public Player(String name, IOHandler ioHandler) {
-    this.name = name;
+    super(name);
     this.ioHandler = ioHandler;
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public String getPassword() {
     return password;

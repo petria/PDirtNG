@@ -16,6 +16,7 @@ public class Bootstrap {
   private static final String LOCATIONS_DATA_FILE = "data/locations";
   private static final String ZONES_DATA_FILE = "data/zones";
   private static final String OBJECTS_DATA_FILE = "data/objects";
+  private static final String MOBILES_DATA_FILE = "data/mobiles";
 
 
   public void loadZones() throws Exception {
@@ -72,7 +73,7 @@ public class Bootstrap {
         if (line.equals("^")) {
           break;
         }
-        desc += line + "\n";
+        desc += line.replaceAll("\\^", "") + "\n";
       }
       location.setLongDescription(desc);
       World.getInstance().addLocation(location);
@@ -117,6 +118,7 @@ public class Bootstrap {
           if (line.endsWith("^")) {
             break;
           }
+          descX += "\n";
         }
         desc[j] = descX;
       }
@@ -129,13 +131,70 @@ public class Bootstrap {
         if (descX.endsWith("^")) {
           break;
         }
+        descX += "\n";
       }
       object.setExamine(descX);
       br.readLine(); // empty line between objects
 
       World.getInstance().addObject(object);
     }
+  }
 
+  public void loadMobiles() throws Exception {
+    File f = new File(MOBILES_DATA_FILE);
+    BufferedReader br = new BufferedReader(new FileReader(f));
+    String line = br.readLine();
+    int objectCount = Integer.parseInt(line);
+
+    for (int i = 0; i < objectCount; i++) {
+      line = br.readLine();
+      Mobile mobile = new Mobile(line);
+
+      line = br.readLine();
+      String[] s = line.split(" ");
+      mobile.setId(Long.parseLong(s[0]));
+      mobile.setPnum(Integer.parseInt(s[1]));
+      mobile.setZone(Integer.parseInt(s[2]));
+      mobile.setLocation(Integer.parseInt(s[3]));
+      mobile.setStrength(Integer.parseInt(s[4]));
+      mobile.setDamage(Integer.parseInt(s[5]));
+      mobile.setAgression(Integer.parseInt(s[6]));
+      mobile.setArmor(Integer.parseInt(s[7]));
+      mobile.setSpeed(Integer.parseInt(s[8]));
+      mobile.setVisibility(Integer.parseInt(s[9]));
+      mobile.setWimpy(Integer.parseInt(s[10]));
+
+      mobile.setLevel(-1); /* Negative level for all mobiles. */
+
+      line = br.readLine(); // flags row 1
+      line = br.readLine(); // flags row 2
+
+      String descX = "";
+      while (true) {
+        line = br.readLine();
+        descX += line.replaceAll("\\^", "");
+        if (line.endsWith("^")) {
+          break;
+        }
+        descX += "\n";
+      }
+      mobile.setDescription(descX);
+
+      descX = "";
+      while (true) {
+        line = br.readLine();
+        descX += line.replaceAll("\\^", "");
+        if (line.endsWith("^")) {
+          break;
+        }
+        descX += "\n";
+      }
+      mobile.setExamine(descX);
+
+      World.getInstance().addMobile(mobile);
+      line = br.readLine(); // skip empty line
+
+    }
   }
 
 }

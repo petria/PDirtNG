@@ -44,13 +44,13 @@ public class Location extends MudObject {
   private String flags;
   private String shortDescription;
   private String longDescription;
-  private List<Player> mobiles;
+  private List<Mobile> mobiles;
   private List<Object> objects;
 
   public Location(int id) {
     super();
     this.id = id;
-    this.mobiles = new ArrayList<Player>();
+    this.mobiles = new ArrayList<Mobile>();
     this.objects = new ArrayList<Object>();
   }
 
@@ -159,8 +159,11 @@ public class Location extends MudObject {
     return this.objects;
   }
 
+  public void addMobile(Mobile mobile) {
+    addMobile(mobile, EXIT_UNKNOWN);
+  }
 
-  public void addMobile(Player mobile, int arrivedFrom) {
+  public void addMobile(Mobile mobile, int arrivedFrom) {
     this.mobiles.add(mobile);
     if (arrivedFrom == EXIT_ENTERED_GAME) {
       messageToRoom(mobile.getName() + " has entered game.\n");
@@ -180,10 +183,13 @@ public class Location extends MudObject {
   }
 
   public void messageToRoom(String message) {
-    for (Player player : mobiles) {
-      IOHandler ioHandler = player.getIoHandler();
-      if (ioHandler != null) {
-        ioHandler.sendLine(message);
+    for (Mobile mobile : mobiles) {
+      if (mobile instanceof Player) {
+        Player player = (Player) mobile;
+        IOHandler ioHandler = player.getIoHandler();
+        if (ioHandler != null) {
+          ioHandler.sendLine(message);
+        }
       }
     }
   }

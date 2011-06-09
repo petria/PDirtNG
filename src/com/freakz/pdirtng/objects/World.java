@@ -16,7 +16,7 @@ public class World {
   private List<Location> locations = new ArrayList<Location>();
   private List<Zone> zones = new ArrayList<Zone>();
   private List<Object> objects = new ArrayList<Object>();
-
+  private List<Mobile> mobiles  = new ArrayList<Mobile>();
 
   public static World getInstance() {
     return ourInstance;
@@ -67,6 +67,19 @@ public class World {
     this.objects.add(object);
   }
 
+  public void addMobile(Mobile mobile) {
+    Zone zone = this.zones.get(mobile.getZoneId());
+    zone.addMobile(mobile);
+
+    Location location = mobile.getLocation();
+    if (location != null) {
+      location.addMobile(mobile);
+    }
+
+    this.mobiles.add(mobile);
+  }
+
+
   public Object findObjectByName(Location location, String target) {
     for (Object obj : location.getObjects()) {
       if (obj.getName().startsWith(target) || obj.getAltName().startsWith(target)) {
@@ -75,4 +88,5 @@ public class World {
     }
     return null;
   }
+
 }
