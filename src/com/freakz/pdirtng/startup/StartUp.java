@@ -4,6 +4,7 @@ import com.freakz.pdirtng.engine.PDirtNG;
 import com.freakz.pdirtng.io.KonsoleClient;
 import com.freakz.pdirtng.io.SocketServer;
 import com.freakz.pdirtng.objects.Bootstrap;
+import com.freakz.pdirtng.objects.World;
 
 /**
  * Date: 5/20/11
@@ -27,10 +28,14 @@ public class StartUp {
     SocketServer socketServer = new SocketServer(engine);
     socketServer.start();
 
+    World world = World.getInstance();
+    world.start();
+
     KonsoleClient konsole = new KonsoleClient(engine);
     konsole.start();
 
-/*    World world = World.getInstance();
+
+/*
 
 List<Location> locations = world.getLocations();
 for (Location location: locations) {

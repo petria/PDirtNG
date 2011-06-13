@@ -148,7 +148,7 @@ public class Bootstrap {
 
     for (int i = 0; i < objectCount; i++) {
       line = br.readLine();
-      Mobile mobile = new Mobile(line);
+      Mobile mobile = new Mobile(line.replaceAll("\\^", ""));
 
       line = br.readLine();
       String[] s = line.split(" ");

@@ -13,20 +13,21 @@ import java.util.List;
  */
 public class Location extends MudObject {
 
-  public static int EXIT_NORTH = 0;
-  public static int EXIT_EAST = 1;
-  public static int EXIT_SOUTH = 2;
-  public static int EXIT_WEST = 3;
-  public static int EXIT_UP = 4;
-  public static int EXIT_DOWN = 5;
-  public static int EXIT_NORTHEAST = 6;
-  public static int EXIT_NORTHWEST = 7;
-  public static int EXIT_SOUTHEAST = 8;
-  public static int EXIT_SOUTHWEST = 9;
+  public static final int EXIT_NORTH = 0;
+  public static final int EXIT_EAST = 1;
+  public static final int EXIT_SOUTH = 2;
+  public static final int EXIT_WEST = 3;
+  public static final int EXIT_UP = 4;
+  public static final int EXIT_DOWN = 5;
+  public static final int EXIT_NORTHEAST = 6;
+  public static final int EXIT_NORTHWEST = 7;
+  public static final int EXIT_SOUTHEAST = 8;
+  public static final int EXIT_SOUTHWEST = 9;
 
-  public static int EXIT_UNKNOWN = 100;
-  public static int EXIT_ENTERED_GAME = 101;
-  public static int EXIT_QUIT_GAME = 102;
+  public static final int EXIT_UNKNOWN = 100;
+  public static final int EXIT_ENTERED_GAME = 101;
+  public static final int EXIT_QUIT_GAME = 102;
+  public static final int EXIT_GOTO_HERE = 200;
 
 
   public static String[] EXIT_NAMES =
@@ -35,7 +36,7 @@ public class Location extends MudObject {
   public static String[] EXIT_NAMES_SHORT =
       {"n", "e", "s", "w", "u", "d", "ne", "nw", "se", "sw"};
 
-  private static final int NUM_OF_EXITS = 10;
+  public static final int NUM_OF_EXITS = 10;
 
   private int exits[] = new int[NUM_OF_EXITS];
 
@@ -167,17 +168,20 @@ public class Location extends MudObject {
     this.mobiles.add(mobile);
     if (arrivedFrom == EXIT_ENTERED_GAME) {
       messageToRoom(mobile.getName() + " has entered game.\n");
+    } else if (arrivedFrom == EXIT_GOTO_HERE) {
+      messageToRoom(mobile.getName() + " appears with ear splitting bang.\n");
     } else {
       messageToRoom(mobile.getName() + " has arrived.\n");
     }
   }
 
-  public void removeMobile(Player mobile, int goneTo) {
+  public void removeMobile(Mobile mobile, int goneTo) {
     this.mobiles.remove(mobile);
     if (goneTo == EXIT_QUIT_GAME) {
       messageToRoom(mobile.getName() + " has left game.\n");
-    } else
-    if (goneTo != EXIT_UNKNOWN) {
+    } else if (goneTo == EXIT_GOTO_HERE) {
+      messageToRoom(mobile.getName() + " disappears in a puff of smoke.\n");
+    } else if (goneTo != EXIT_UNKNOWN) {
       messageToRoom(mobile.getName() + " has gone " + EXIT_NAMES[goneTo] + "\n");
     }
   }
@@ -194,4 +198,13 @@ public class Location extends MudObject {
     }
   }
 
+  public int getValidExits() {
+    int numOfExits = 0;
+    for (int i = 0; i < exits.length; i++) {
+      if (exits[i] != 0) {
+        numOfExits++;
+      }
+    }
+    return numOfExits;
+  }
 }

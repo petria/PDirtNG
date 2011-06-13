@@ -13,8 +13,6 @@ public class Player extends Mobile {
   private IOHandler ioHandler;
   private String password;
 
-  private Location location;
-
   public Player(String name, IOHandler ioHandler) {
     super(name);
     this.ioHandler = ioHandler;
@@ -27,20 +25,6 @@ public class Player extends Mobile {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public Location getLocation() {
-    return location;
-  }
-
-  public void setLocation(Location location, int arrivedFrom, int goneTo) {
-    if (this.location != null) {
-      this.location.removeMobile(this, goneTo);
-    }
-    this.location = location;
-    if (location != null) {
-      this.location.addMobile(this, arrivedFrom);
-    }
   }
 
   public String toString() {

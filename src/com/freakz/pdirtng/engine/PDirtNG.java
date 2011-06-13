@@ -1,10 +1,8 @@
 package com.freakz.pdirtng.engine;
 
 import com.freakz.pdirtng.io.IOHandler;
-import com.freakz.pdirtng.objects.Location;
+import com.freakz.pdirtng.objects.*;
 import com.freakz.pdirtng.objects.Object;
-import com.freakz.pdirtng.objects.Player;
-import com.freakz.pdirtng.objects.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +54,13 @@ public class PDirtNG {
 
       Location location = player.getLocation();
       txt = location.look();
+
+    } else if (line.startsWith("goto ")) {
+      String target = line.replaceAll("goto ", "");
+      Mobile mobile = this.world.findMobileByName(target);
+      if (mobile != null) {
+        player.setLocation(mobile.getLocation(), Location.EXIT_GOTO_HERE, Location.EXIT_GOTO_HERE);
+      }
 
     } else if (line.matches("n|e|s|w|u|d")) {
 

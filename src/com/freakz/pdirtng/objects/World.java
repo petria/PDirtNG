@@ -9,7 +9,10 @@ import java.util.List;
  *
  * @author Petri Airio
  */
-public class World {
+public class World implements Runnable {
+
+  private static final int GAME_TICK_SECONDS = 3;
+  private static final int MOBILES_MOVE_RANDOM = 30;
 
   private static World ourInstance = new World();
 
@@ -89,4 +92,54 @@ public class World {
     return null;
   }
 
+  public void start() {
+    Thread t = new Thread(this);
+    t.start();
+  }
+
+  public void moveMobiles() {
+    for (Mobile mobile: this.mobiles) {
+      if (mobile.getSpeed() > 0) {
+        int rnd = 1 + (int) (Math.random() * 100);
+        Location location = mobile.getLocation();
+        if (location != null && location.getValidExits() > 0 && rnd > MOBILES_MOVE_RANDOM) {
+          int rndExit = ((int) (Math.random() * 100)) % Location.NUM_OF_EXITS;
+          int dir = 0;
+          while (true) {
+            dir = location.getExits()[rndExit];
+            if (dir != 0) {
+              break;
+            }
+            rndExit++;
+            if (rndExit == Location.NUM_OF_EXITS) {
+              rndExit = 0;
+            }
+          }
+          Location newLocation = findLocationById(dir);
+          mobile.setLocation(newLocation, Location.EXIT_UNKNOWN, rndExit);
+//          mobile.moveTo(dir, rndExit);
+        }
+      }
+    }
+  }
+
+  public void run() {
+    while (true) {
+      moveMobiles();
+      try {
+        Thread.sleep(1000 * GAME_TICK_SECONDS);
+      } catch (InterruptedException e) {
+        //
+      }
+    }
+  }
+
+  public Mobile findMobileByName(String target) {
+    for (Mobile mobile : this.mobiles) {
+      if (mobile.getName().equalsIgnoreCase(target)) {
+        return mobile;
+      }
+    }
+    return null;
+  }
 }

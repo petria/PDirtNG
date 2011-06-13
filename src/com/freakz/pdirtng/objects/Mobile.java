@@ -14,7 +14,8 @@ public class Mobile extends MudObject {
   private String description;
   private String examine;
 
-  private int location;
+//  private int location;
+  private Location location;
   private int homeLocation;
   private int damage;
   private int armor;
@@ -65,15 +66,28 @@ public class Mobile extends MudObject {
     this.examine = examine;
   }
 
-
   public Location getLocation() {
-    Location location = World.getInstance().findLocationById(this.location);
-    return location;
+    return this.location;
   }
 
-  public void setLocation(int location) {
+  public void setLocation(Location location) {
     this.location = location;
   }
+
+  public void setLocation(int locationId) {
+    this.location = World.getInstance().findLocationById(locationId);
+  }
+
+  public void setLocation(Location location, int arrivedFrom, int goneTo) {
+    if (this.location != null) {
+      this.location.removeMobile(this, goneTo);
+    }
+    this.location = location;
+    if (location != null) {
+      this.location.addMobile(this, arrivedFrom);
+    }
+  }
+
 
   public int getHomeLocation() {
     return homeLocation;
@@ -214,4 +228,15 @@ public class Mobile extends MudObject {
   public String toString() {
     return getDescription();
   }
+
+  public Location moveTo(int id, int goneTo) {
+    Location newLocation = World.getInstance().findLocationById(id);
+    if (newLocation != null) {
+      Location oldLocation = getLocation();
+      oldLocation.removeMobile(this, goneTo);
+      newLocation.addMobile(this);
+    }
+    return newLocation;
+  }
+
 }
