@@ -30,10 +30,10 @@ public class Mobile extends MudObject {
   private int weapon;
   private int score;
 
-  private int pnum; /* player/mobile number */
+  private int pnum;                 /* player/mobile number */
   private long id;
 
-  private List<Object> objects;
+  private List<Object> objects;     /* carrying */
   private int zone;
   private int wimpy;
 
