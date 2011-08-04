@@ -1,9 +1,11 @@
 package com.freakz.pdirtng.engine;
 
+import com.freakz.pdirtng.engine.handlers.EngineBaseHandler;
 import com.freakz.pdirtng.io.IOHandler;
 import com.freakz.pdirtng.objects.*;
 import com.freakz.pdirtng.objects.Object;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class PDirtNG {
   public PDirtNG() {
     this.world = World.getInstance();
     clients = new ArrayList<IOHandler>();
+    scanHandlers();
   }
 
   public void addIOHandler(IOHandler ioHandler) {
@@ -103,4 +106,35 @@ public class PDirtNG {
   public World getWorld() {
     return this.world;
   }
+
+  private void scanHandlers() {
+    String scanDir = "out/production/PDirtNG/";
+    try {
+      List<String> classNames = DynamicClassLoading.scanClasses(scanDir, "com/freakz/pdirtng/engine/handlers/", "com.freakz.pdirtng.engine.handlers.HandlerTestCommands.*");
+      ClassLoader loader = new CustomClassLoader(scanDir);
+
+      for (String name : classNames) {
+        String ownerClass = name.replaceAll("com.freakz.pdirtng.engine.handlers.", "");
+
+        EngineBaseHandler handler = (EngineBaseHandler) DynamicClassLoading.instantiate(loader, name);
+
+        Method methods[] = handler.getClass().getMethods();
+        for (Method method : methods) {
+          String methodName = method.getName();
+          String split[] = methodName.split("_");
+          if (split[0].matches(ownerClass)) {
+            String matcher = split[1];
+            int foo = 0;
+          }
+
+        }
+
+      }
+
+
+    } catch (Exception e) {
+      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    }
+  }
+
 }
