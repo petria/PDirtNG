@@ -5,6 +5,7 @@ import com.freakz.pdirtng.io.IOHandler;
 import com.freakz.pdirtng.objects.Player;
 import com.freakz.pdirtng.objects.World;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +48,18 @@ public class PDirtNG {
       txt = "Bye bye!\n";
     } else {
       for (DynamicHandlerClass handlerClass : commandHandlers) {
-        String matcher = handlerClass.getMatcher() + ".*";
+        String matcher = handlerClass.getMatcher();
         if (line.matches(matcher)) {
-
+          Request request = new Request();
+          Response response = new Response();
           System.out.println("Should invoke: " + handlerClass.getOwnerClass() + " --> " + handlerClass.getMethod());
+          try {
+            handlerClass.getMethod().invoke(handlerClass.getOwnerClass(), request, response);
+          } catch (IllegalAccessException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+          } catch (InvocationTargetException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+          }
 
         }
       }
@@ -124,7 +133,7 @@ public class PDirtNG {
   private void scanHandlers() {
     String scanDir = "out/production/PDirtNG/";
     try {
-      List<String> classNames = DynamicClassLoading.scanClasses(scanDir, "com/freakz/pdirtng/engine/handlers/", "com.freakz.pdirtng.engine.handlers.HandlerTestCommands.*");
+      List<String> classNames = DynamicClassLoading.scanClasses(scanDir, "com/freakz/pdirtng/engine/handlers/", "com.freakz.pdirtng.engine.handlers.Handler.*");
       ClassLoader loader = new CustomClassLoader(scanDir);
       List<DynamicHandlerClass> handlersList = new ArrayList<DynamicHandlerClass>();
       for (String name : classNames) {
@@ -134,11 +143,33 @@ public class PDirtNG {
 
         Method methods[] = handler.getClass().getMethods();
         for (Method method : methods) {
+          Class[] params = method.getParameterTypes();
+          if (params.length != 2) {
+            continue;
+          }
+          if (params[0] != Request.class && params[1] != Response.class) {
+            continue;
+          }
+
           String methodName = method.getName();
-          String split[] = methodName.split("_");
-          if (split[0].matches(ownerClass)) {
-            String matcher = split[1];
-            DynamicHandlerClass dhc = new DynamicHandlerClass(matcher, method, name);
+          if (methodName.startsWith(ownerClass)) {
+            methodName = methodName.replaceAll(ownerClass + "_", "");
+            String split[] = methodName.split("_");
+            String matcher = null;
+            for (String matchPart : split) {
+              if (matcher == null) {
+                matcher = "";
+              } else {
+                matcher += "|";
+              }
+              matcher += matchPart;
+              char chr = matcher.charAt(0);
+              if (Character.isUpperCase(chr)) {
+                matcher += ".*";
+              }
+            }
+
+            DynamicHandlerClass dhc = new DynamicHandlerClass(matcher, method, handler);
             handlersList.add(dhc);
 
           }

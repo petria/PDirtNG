@@ -17,6 +17,9 @@ public class DynamicClassLoading {
     String path = scanDir + packagePath;
 
     File f = new File(path);
+    if (!f.exists()) {
+      return null;
+    }
     String classPath = packagePath.replaceAll("/", ".");
 
     String[] files = f.list();
