@@ -2,8 +2,8 @@ package com.freakz.pdirtng.engine;
 
 import com.freakz.pdirtng.engine.handlers.EngineBaseHandler;
 import com.freakz.pdirtng.io.IOHandler;
-import com.freakz.pdirtng.objects.*;
-import com.freakz.pdirtng.objects.Object;
+import com.freakz.pdirtng.objects.Player;
+import com.freakz.pdirtng.objects.World;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -23,6 +23,7 @@ public class PDirtNG {
 
   private World world;
   private List<IOHandler> clients;
+  private List<DynamicHandlerClass> commandHandlers;
 
   public PDirtNG() {
     this.world = World.getInstance();
@@ -44,7 +45,19 @@ public class PDirtNG {
     if (line.equals("quit")) {
       status = STATUS_QUIT;
       txt = "Bye bye!\n";
-    } else if (line.startsWith("examine ")) {
+    } else {
+      for (DynamicHandlerClass handlerClass : commandHandlers) {
+        String matcher = handlerClass.getMatcher() + ".*";
+        if (line.matches(matcher)) {
+
+          System.out.println("Should invoke: " + handlerClass.getOwnerClass() + " --> " + handlerClass.getMethod());
+
+        }
+      }
+    }
+
+/*
+    else if (line.startsWith("examine ")) {
       String target = line.replaceFirst("examine ", "");
       Object object = this.world.findObjectByName(player.getLocation(), target);
       if (object != null) {
@@ -96,6 +109,7 @@ public class PDirtNG {
     } else {
       txt = "I beg your pardon?\n";
     }
+*/
 
 
     Response response = new Response(txt, status);
@@ -112,7 +126,7 @@ public class PDirtNG {
     try {
       List<String> classNames = DynamicClassLoading.scanClasses(scanDir, "com/freakz/pdirtng/engine/handlers/", "com.freakz.pdirtng.engine.handlers.HandlerTestCommands.*");
       ClassLoader loader = new CustomClassLoader(scanDir);
-
+      List<DynamicHandlerClass> handlersList = new ArrayList<DynamicHandlerClass>();
       for (String name : classNames) {
         String ownerClass = name.replaceAll("com.freakz.pdirtng.engine.handlers.", "");
 
@@ -124,13 +138,16 @@ public class PDirtNG {
           String split[] = methodName.split("_");
           if (split[0].matches(ownerClass)) {
             String matcher = split[1];
-            int foo = 0;
+            DynamicHandlerClass dhc = new DynamicHandlerClass(matcher, method, name);
+            handlersList.add(dhc);
+
           }
 
         }
 
       }
 
+      this.commandHandlers = handlersList;
 
     } catch (Exception e) {
       e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
