@@ -50,7 +50,7 @@ public class PDirtNG {
       for (DynamicHandlerClass handlerClass : commandHandlers) {
         String matcher = handlerClass.getMatcher();
         if (line.matches(matcher)) {
-          Request request = new Request();
+          Request request = new Request(line, this);
           Response response = new Response();
           System.out.println("Should invoke: " + handlerClass.getOwnerClass() + " --> " + handlerClass.getMethod());
           try {
