@@ -8,11 +8,20 @@ package com.freakz.pdirtng.engine;
  */
 public class Response {
 
+  public static final int STATUS_OK = 0;
+  public static final int STATUS_QUIT = 1;
+  public static final int STATUS_LOGIN_OK = 2;
+
   private String response;
   private int status;
 
+  public Response(String response) {
+    this.response = response;
+    this.status = STATUS_OK;
+  }
+
   public Response() {
-    status = PDirtNG.STATUS_OK;
+    this.status = STATUS_OK;
   }
 
   public Response(String response, int status) {
@@ -24,13 +33,13 @@ public class Response {
     this.response = response;
   }
   public String getResponse() {
-    return response;
+    return this.response;
   }
 
   public void setStatus(int status) {
     this.status = status;
   }
   public int getStatus() {
-    return status;
+    return this.status;
   }
 }

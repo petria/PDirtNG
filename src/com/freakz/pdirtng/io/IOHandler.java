@@ -62,11 +62,11 @@ public class IOHandler extends Thread {
           this.IOClient.print(response.getResponse());
         }
 
-        if (response.getStatus() == PDirtNG.STATUS_LOGIN_OK) {
+        if (response.getStatus() == Response.STATUS_LOGIN_OK) {
           this.handlerStack.pop();
           this.player = new Player(loginHandler.getLogin(), this);
           this.player.setLocation(engine.getWorld().findLocationById(-1906), Location.EXIT_ENTERED_GAME, Location.EXIT_ENTERED_GAME);
-        } else if (response.getStatus() == PDirtNG.STATUS_QUIT) {
+        } else if (response.getStatus() == Response.STATUS_QUIT) {
           this.player.setLocation(null, Location.EXIT_QUIT_GAME, Location.EXIT_QUIT_GAME);
           this.running = false;
         }

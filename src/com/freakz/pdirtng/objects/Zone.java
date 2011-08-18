@@ -7,7 +7,7 @@ import java.util.List;
  * Date: 30.5.2011
  * Time: 8:46
  *
- * @author Petri Airio, Landis+Gyr Oy
+ * @author Petri Airio
  */
 public class Zone extends MudObject {
 

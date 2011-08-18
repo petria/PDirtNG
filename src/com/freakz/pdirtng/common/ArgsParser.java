@@ -85,7 +85,7 @@ public class ArgsParser {
   }
 
   public String getArgs() {
-    return joinArgs(0);
+    return joinArgs(1);
   }
 
   public String getArgs(int num) {

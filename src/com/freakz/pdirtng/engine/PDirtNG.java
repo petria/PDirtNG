@@ -5,7 +5,6 @@ import com.freakz.pdirtng.io.IOHandler;
 import com.freakz.pdirtng.objects.Player;
 import com.freakz.pdirtng.objects.World;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +16,6 @@ import java.util.List;
  * @author Petri Airio
  */
 public class PDirtNG {
-
-  public static final int STATUS_OK = 0;
-  public static final int STATUS_QUIT = 1;
-  public static final int STATUS_LOGIN_OK = 2;
 
   private World world;
   private List<IOHandler> clients;
@@ -41,93 +36,38 @@ public class PDirtNG {
   }
 
   public Response handleLine(Player player, String line) {
-    String txt = null;
-    int status = STATUS_OK;
+    Response response = null;
     if (line.equals("quit")) {
-      status = STATUS_QUIT;
-      txt = "Bye bye!\n";
+      response = new Response("Bye bye!\n", Response.STATUS_QUIT);
     } else {
       for (DynamicHandlerClass handlerClass : commandHandlers) {
         String matcher = handlerClass.getMatcher();
         if (line.matches(matcher)) {
-          Request request = new Request(line, this);
-          Response response = new Response();
-          System.out.println("Should invoke: " + handlerClass.getOwnerClass() + " --> " + handlerClass.getMethod());
+          Request request = new Request(line, player, this);
+//          System.out.println("Should invoke: " + handlerClass.getOwnerClass() + " --> " + handlerClass.getMethod());
           try {
+            response = new Response();
             handlerClass.getMethod().invoke(handlerClass.getOwnerClass(), request, response);
-          } catch (IllegalAccessException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-          } catch (InvocationTargetException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            break;
+          } catch (Exception e) {
+            response = new Response("Internal error!: " + e.getMessage(), Response.STATUS_OK);
+            e.printStackTrace();
           }
-
         }
       }
+      if (response == null) {
+        response = new Response("I beg your pardon?\n", Response.STATUS_OK);
+      }
     }
-
-/*
-    else if (line.startsWith("examine ")) {
-      String target = line.replaceFirst("examine ", "");
-      Object object = this.world.findObjectByName(player.getLocation(), target);
-      if (object != null) {
-        txt = object.getExamine() + "\n";
-      } else {
-        txt = "You see nothing special.\n";
-      }
-
-    } else if (line.equals("look")) {
-
-      Location location = player.getLocation();
-      txt = location.look();
-
-    } else if (line.startsWith("goto ")) {
-      String target = line.replaceAll("goto ", "");
-      Mobile mobile = this.world.findMobileByName(target);
-      if (mobile != null) {
-        player.setLocation(mobile.getLocation(), Location.EXIT_GOTO_HERE, Location.EXIT_GOTO_HERE);
-      }
-
-    } else if (line.matches("n|e|s|w|u|d")) {
-
-      int dir = Location.resolveDir(line);
-      Location location = player.getLocation();
-      int moveToId = location.getExits()[dir];
-      if (moveToId != 0) {
-        location = world.findLocationById(moveToId);
-        txt = location.look();
-        player.setLocation(location, Location.EXIT_UNKNOWN, dir);
-      } else {
-        txt = "Can't go that way!\n";
-      }
-
-    } else if (line.matches("who")) {
-      txt = "Level        Player\n";
-      txt += "-----------------------------------------------------------------------------\n";
-      int count = 0;
-      for (IOHandler ioHandler : this.clients) {
-        String level = "LEVEL";
-        String name = ioHandler.getPlayer().getName();
-        txt += String.format("[%-10s] %s\n", level, name);
-        count++;
-      }
-      txt += "-----------------------------------------------------------------------------\n";
-      txt += String.format("Total of %d visible users.\n", count);
-    } else if (line.startsWith("say ")) {
-      String say = line.replaceFirst("say ", "");
-      player.getLocation().messageToRoom(player.getName() + " says: " + say + "\n");
-    } else {
-      txt = "I beg your pardon?\n";
-    }
-*/
-
-
-    Response response = new Response(txt, status);
-
     return response;
   }
 
   public World getWorld() {
     return this.world;
+  }
+
+  public List<IOHandler> getClients() {
+    return clients;
   }
 
   private void scanHandlers() {
@@ -165,7 +105,7 @@ public class PDirtNG {
               matcher += matchPart;
               char chr = matcher.charAt(0);
               if (Character.isUpperCase(chr)) {
-                matcher += ".*";
+                matcher = matcher.toLowerCase() + ".*";
               }
             }
 
@@ -184,5 +124,6 @@ public class PDirtNG {
       e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
     }
   }
+
 
 }

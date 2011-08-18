@@ -47,7 +47,7 @@ public class LoginHandler extends BaseHandler {
       case STATE_GET_PASSWD:
         if (line.equalsIgnoreCase("1234")) {
           response.setResponse("Password ok!\n");
-          response.setStatus(PDirtNG.STATUS_LOGIN_OK);
+          response.setStatus(Response.STATUS_LOGIN_OK);
           state++;
         } else {
           response.setResponse("Invalid password!\n");

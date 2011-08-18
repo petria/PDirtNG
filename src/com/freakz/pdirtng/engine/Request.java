@@ -1,6 +1,7 @@
 package com.freakz.pdirtng.engine;
 
 import com.freakz.pdirtng.common.ArgsParser;
+import com.freakz.pdirtng.objects.Player;
 
 /**
  * Date: 8/4/11
@@ -12,9 +13,11 @@ public class Request {
 
   private ArgsParser args;
   private PDirtNG engine;
+  private Player player;
 
-  public Request(String line, PDirtNG engine) {
+  public Request(String line, Player player, PDirtNG engine) {
     this.args = new ArgsParser(line);
+    this.player = player;
     this.engine = engine;
   }
 
@@ -24,5 +27,9 @@ public class Request {
 
   public PDirtNG getEngine() {
     return engine;
+  }
+
+  public Player getPlayer() {
+    return player;
   }
 }
