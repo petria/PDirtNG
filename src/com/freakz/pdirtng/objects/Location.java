@@ -141,6 +141,14 @@ public class Location extends MudObject {
     for (Object object : objects) {
       lookReply += object.getDescriptions()[object.getState()] + "\n";
     }
+
+    String objectNames = "[";
+    for (Object object : objects) {
+      objectNames += (object.getName() + " ");
+    }
+    objectNames = objectNames.trim() + "]\n";
+    lookReply += objectNames;
+
     for (MudObject mobile : mobiles) {
       lookReply += mobile.toString() + "\n";
     }
