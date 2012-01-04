@@ -14,7 +14,7 @@ import com.freakz.pdirtng.objects.Mobile;
 public class HandlerMoveCommands extends EngineBaseHandler {
 
   public void HandlerMoveCommands_n_e_s_w_u_d_move(Request request, Response response) {
-    String line = request.getArgs().getOrigLine();
+    String line = request.getArgsParser().getOrigLine();
     String txt;
     int dir = Location.resolveDir(line);
     Location location = request.getPlayer().getLocation();
@@ -32,7 +32,7 @@ public class HandlerMoveCommands extends EngineBaseHandler {
   }
 
   public void HandlerMoveCommands_Goto(Request request, Response response) {
-    String target = request.getArgs().getArgs();
+    String target = request.getArgsParser().getArgs();
     if (target.length() == 0) {
       // TODO GOTO HOME LOCATION
     }

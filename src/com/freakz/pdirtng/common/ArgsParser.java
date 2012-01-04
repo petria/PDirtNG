@@ -45,7 +45,7 @@ public class ArgsParser {
   }
 
   public boolean hasArgs() {
-    if (_args != null && _args.length > 0) {
+    if (_args != null && _args.length > 1) {
       return true;
     }
     return false;

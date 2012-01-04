@@ -113,9 +113,7 @@ public class PDirtNG {
             handlersList.add(dhc);
 
           }
-
         }
-
       }
 
       this.commandHandlers = handlersList;

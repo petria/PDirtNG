@@ -12,7 +12,7 @@ import com.freakz.pdirtng.engine.Response;
 public class HandlerCommunicationCommands extends EngineBaseHandler {
 
   public void HandlerCommunicationCommands_Say(Request request, Response response) {
-    request.getPlayer().getLocation().messageToRoom(request.getPlayer().getName() + " says: " + request.getArgs().getArgs() + "\n");
+    request.getPlayer().getLocation().messageToRoom(request.getPlayer().getName() + " says: " + request.getArgsParser().getArgs() + "\n");
   }
 
 }

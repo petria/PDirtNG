@@ -21,7 +21,7 @@ public class Request {
     this.engine = engine;
   }
 
-  public ArgsParser getArgs() {
+  public ArgsParser getArgsParser() {
     return args;
   }
 
