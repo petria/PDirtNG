@@ -27,7 +27,7 @@ public class CustomClassLoader extends ClassLoader {
       throws ClassNotFoundException {
 
     // Since all support classes of loaded class use same class loader
-    // must check subclass cache of classes for things like Object
+    // must check subclass cache of classes for things like MudObject
     Class c = null;
     if (!name.startsWith("com.freakz.pdirt.engine.handlers.Handler")) {
       c = findLoadedClass(name);

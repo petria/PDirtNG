@@ -18,7 +18,7 @@ public class World implements Runnable {
 
   private List<Location> locations = new ArrayList<Location>();
   private List<Zone> zones = new ArrayList<Zone>();
-  private List<Object> objects = new ArrayList<Object>();
+  private List<MudObject> mudObjects = new ArrayList<MudObject>();
   private List<Mobile> mobiles  = new ArrayList<Mobile>();
 
   public static World getInstance() {
@@ -58,16 +58,16 @@ public class World implements Runnable {
     this.zones.add(zone);
   }
 
-  public void addObject(Object object) {
-    Zone zone = this.zones.get(object.getZoneId());
-    zone.addObject(object);
+  public void addObject(MudObject mudObject) {
+    Zone zone = this.zones.get(mudObject.getZoneId());
+    zone.addObject(mudObject);
 
-    Location location = findLocationById(object.getLocation());
+    Location location = findLocationById(mudObject.getLocation());
     if (location != null) {
-      location.addObject(object);
+      location.addObject(mudObject);
     }
 
-    this.objects.add(object);
+    this.mudObjects.add(mudObject);
   }
 
   public void addMobile(Mobile mobile) {
@@ -83,8 +83,8 @@ public class World implements Runnable {
   }
 
 
-  public Object findObjectByName(Location location, String target) {
-    for (Object obj : location.getObjects()) {
+  public MudObject findObjectByName(Location location, String target) {
+    for (MudObject obj : location.getMudObjects()) {
       if (obj.getName().startsWith(target) || obj.getAltName().startsWith(target)) {
         return obj;
       }

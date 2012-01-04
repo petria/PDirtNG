@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Petri Airio
  */
-public class Mobile extends MudObject {
+public class Mobile extends MObject {
 
   private String name;
   private String description;
@@ -34,7 +34,7 @@ public class Mobile extends MudObject {
   private int pnum;                 /* player/mobile number */
   private long id;
 
-  private List<Object> objects;     /* carrying */
+  private List<MudObject> mudObjects;     /* carrying */
   private int zone;
   private int wimpy;
 

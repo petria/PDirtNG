@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Petri Airio
  */
-public class Location extends MudObject {
+public class Location extends MObject {
 
   public static final int EXIT_NORTH = 0;
   public static final int EXIT_EAST = 1;
@@ -46,13 +46,13 @@ public class Location extends MudObject {
   private String shortDescription;
   private String longDescription;
   private List<Mobile> mobiles;
-  private List<Object> objects;
+  private List<MudObject> mudObjects;
 
   public Location(int id) {
     super();
     this.id = id;
     this.mobiles = new ArrayList<Mobile>();
-    this.objects = new ArrayList<Object>();
+    this.mudObjects = new ArrayList<MudObject>();
   }
 
   public int[] getExits() {
@@ -138,34 +138,34 @@ public class Location extends MudObject {
     lookReply += ("------: " + getId() + " -> " + getObjectId() + "\n");
     lookReply += (getShortDescriptionNoColor() + " [" + getZoneId() + "]" + "\n");
     lookReply += (getLongDescription());
-    for (Object object : objects) {
-      lookReply += object.getDescriptions()[object.getState()] + "\n";
+    for (MudObject mudObject : mudObjects) {
+      lookReply += mudObject.getDescriptions()[mudObject.getState()] + "\n";
     }
 
     String objectNames = "[";
-    for (Object object : objects) {
-      objectNames += (object.getName() + " ");
+    for (MudObject mudObject : mudObjects) {
+      objectNames += (mudObject.getName() + " ");
     }
     objectNames = objectNames.trim() + "]\n";
     lookReply += objectNames;
 
-    for (MudObject mobile : mobiles) {
+    for (MObject mobile : mobiles) {
       lookReply += mobile.toString() + "\n";
     }
     lookReply += "\n" + getExitsString() + "\n";
     return lookReply;
   }
 
-  public void addObject(Object object) {
-    this.objects.add(object);
+  public void addObject(MudObject mudObject) {
+    this.mudObjects.add(mudObject);
   }
 
-  public void removeObject(Object object) {
-    this.objects.remove(object);
+  public void removeObject(MudObject mudObject) {
+    this.mudObjects.remove(mudObject);
   }
 
-  public List<Object> getObjects() {
-    return this.objects;
+  public List<MudObject> getMudObjects() {
+    return this.mudObjects;
   }
 
   public void addMobile(Mobile mobile) {

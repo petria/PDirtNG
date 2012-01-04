@@ -88,24 +88,24 @@ public class Bootstrap {
     int objectCount = Integer.parseInt(line);
 
     for (int i = 0; i < objectCount; i++) {
-      Object object = new Object();
+      MudObject mudObject = new MudObject();
       line = br.readLine();
       String[] s = line.split(" ");
-      object.setName(s[0]);
-      object.setAltName(s[1]);
-      object.setZoneId(Integer.parseInt(s[2]));
-      object.setId(Integer.parseInt(s[3]));
+      mudObject.setName(s[0]);
+      mudObject.setAltName(s[1]);
+      mudObject.setZoneId(Integer.parseInt(s[2]));
+      mudObject.setId(Integer.parseInt(s[3]));
       // s[4] =     int           onum;        number for the code to test so that cloned
-      object.setLinked(Integer.parseInt(s[5]));
-      object.setVisibility(Integer.parseInt(s[6]));
-      object.setCarried(Integer.parseInt(s[7]));
-      object.setLocation(Integer.parseInt(s[8]));
-      object.setState(Integer.parseInt(s[9]));
-      object.setDamage(Integer.parseInt(s[10]));
-      object.setArmor(Integer.parseInt(s[11]));
-      object.setMaxState(Integer.parseInt(s[12]));
-      object.setValue(Integer.parseInt(s[13]));
-      object.setSize(Integer.parseInt(s[14]));
+      mudObject.setLinked(Integer.parseInt(s[5]));
+      mudObject.setVisibility(Integer.parseInt(s[6]));
+      mudObject.setCarried(Integer.parseInt(s[7]));
+      mudObject.setLocation(Integer.parseInt(s[8]));
+      mudObject.setState(Integer.parseInt(s[9]));
+      mudObject.setDamage(Integer.parseInt(s[10]));
+      mudObject.setArmor(Integer.parseInt(s[11]));
+      mudObject.setMaxState(Integer.parseInt(s[12]));
+      mudObject.setValue(Integer.parseInt(s[13]));
+      mudObject.setSize(Integer.parseInt(s[14]));
 
       line = br.readLine(); // flags
       String[] desc = new String[4];
@@ -122,7 +122,7 @@ public class Bootstrap {
         }
         desc[j] = descX;
       }
-      object.setDescriptions(desc);
+      mudObject.setDescriptions(desc);
 
       descX = "";
       while (true) {
@@ -133,10 +133,10 @@ public class Bootstrap {
         }
         descX += "\n";
       }
-      object.setExamine(descX);
+      mudObject.setExamine(descX);
       br.readLine(); // empty line between objects
 
-      World.getInstance().addObject(object);
+      World.getInstance().addObject(mudObject);
     }
   }
 

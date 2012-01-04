@@ -9,14 +9,14 @@ import java.util.List;
  *
  * @author Petri Airio
  */
-public class Zone extends MudObject {
+public class Zone extends MObject {
 
   private int zoneId;
   private String zoneName;
   private int startLocation;
 
   private List<Location> locations = new ArrayList<Location>();
-  private List<Object> objects = new ArrayList<Object>();
+  private List<MudObject> mudObjects = new ArrayList<MudObject>();
   private List<Mobile> mobiles = new ArrayList<Mobile>();
 
   public Zone() {
@@ -55,8 +55,8 @@ public class Zone extends MudObject {
     return this.locations;
   }
 
-  public void addObject(Object object) {
-    this.objects.add(object);
+  public void addObject(MudObject mudObject) {
+    this.mudObjects.add(mudObject);
   }
 
 
