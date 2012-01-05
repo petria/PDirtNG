@@ -102,10 +102,10 @@ public class PDirtNG {
               } else {
                 matcher += "|";
               }
-              matcher += matchPart;
-              char chr = matcher.charAt(0);
+              matcher += matchPart.toLowerCase();
+              char chr = matchPart.charAt(0);
               if (Character.isUpperCase(chr)) {
-                matcher = matcher.toLowerCase() + ".*";
+                matcher += ".*";
               }
             }
 

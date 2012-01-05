@@ -47,8 +47,9 @@ public class Zone extends MObject {
     this.startLocation = startLocation;
   }
 
-  public void addLocation(Location location) {
+  public int addLocation(Location location) {
     this.locations.add(location);
+    return this.locations.size();
   }
 
   public List<Location> getZoneLocations() {

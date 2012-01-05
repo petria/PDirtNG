@@ -82,8 +82,18 @@ public class World implements Runnable {
     this.mobiles.add(mobile);
   }
 
+  public MudObject findMudObjectByName(String name) {
+    MudObject mudObject = null;
+    for (MudObject obj : mudObjects) {
+      if (obj.getName().startsWith(name) || obj.getAltName().startsWith(name)) {
+        return obj;
+      }
+    }
+    return mudObject;
+  }
 
-  public MudObject findObjectByName(Location location, String target) {
+
+  public MudObject findLocationMudObjectByName(Location location, String target) {
     for (MudObject obj : location.getMudObjects()) {
       if (obj.getName().startsWith(target) || obj.getAltName().startsWith(target)) {
         return obj;

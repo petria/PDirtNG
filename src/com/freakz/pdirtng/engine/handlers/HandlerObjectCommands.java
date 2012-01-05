@@ -13,7 +13,7 @@ import com.freakz.pdirtng.objects.MudObject;
 public class HandlerObjectCommands extends EngineBaseHandler {
 
   public void HandlerObjectCommands_Examine(Request request, Response response) {
-    MudObject mudObject = request.getEngine().getWorld().findObjectByName(request.getPlayer().getLocation(), request.getArgsParser().getArgs());
+    MudObject mudObject = request.getEngine().getWorld().findLocationMudObjectByName(request.getPlayer().getLocation(), request.getArgsParser().getArgs());
     if (mudObject != null) {
       response.setResponse(mudObject.getExamine() + "\n");
     } else {
@@ -21,11 +21,11 @@ public class HandlerObjectCommands extends EngineBaseHandler {
     }
   }
 
-  public void HandlerObjectCommands_Take(Request request, Response response) {
+  public void HandlerObjectCommands_Take_Get(Request request, Response response) {
     if (!request.getArgsParser().hasArgs()) {
       response.setResponse("Get what?\n");
     } else {
-      MudObject mudObject = request.getEngine().getWorld().findObjectByName(request.getPlayer().getLocation(), request.getArgsParser().getArgs());
+      MudObject mudObject = request.getEngine().getWorld().findLocationMudObjectByName(request.getPlayer().getLocation(), request.getArgsParser().getArgs());
       if (mudObject != null) {
 
       } else {
