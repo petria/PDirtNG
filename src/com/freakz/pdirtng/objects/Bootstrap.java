@@ -34,7 +34,7 @@ public class Bootstrap {
       World.getInstance().addZone(zone);
 
     }
-
+    int foo = 0;
   }
 
   public void loadLocations() throws Exception {
@@ -138,6 +138,9 @@ public class Bootstrap {
 
       World.getInstance().addObject(mudObject);
     }
+
+    World.getInstance().placeObjects();
+
   }
 
   public void loadMobiles() throws Exception {

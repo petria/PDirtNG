@@ -1,5 +1,6 @@
 package com.freakz.pdirtng.objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class Mobile extends MObject {
   private String description;
   private String examine;
 
-//  private int location;
+  //  private int location;
   private Location location;
   private int homeLocation;
   private int damage;
@@ -34,7 +35,7 @@ public class Mobile extends MObject {
   private int pnum;                 /* player/mobile number */
   private long id;
 
-  private List<MudObject> mudObjects;     /* carrying */
+  private List<MudObject> mudObjects = new ArrayList<MudObject>();     /* carrying */
   private int zone;
   private int wimpy;
 
@@ -237,6 +238,15 @@ public class Mobile extends MObject {
       newLocation.addMobile(this);
     }
     return newLocation;
+  }
+
+  /**
+   * Add object to carrying on list of this mobile
+   *
+   * @param mudObject the objecto to carry
+   */
+  public void addMudObject(MudObject mudObject) {
+    this.mudObjects.add(mudObject);
   }
 
 }

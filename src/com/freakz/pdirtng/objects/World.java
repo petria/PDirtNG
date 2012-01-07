@@ -19,7 +19,7 @@ public class World implements Runnable {
   private List<Location> locations = new ArrayList<Location>();
   private List<Zone> zones = new ArrayList<Zone>();
   private List<MudObject> mudObjects = new ArrayList<MudObject>();
-  private List<Mobile> mobiles  = new ArrayList<Mobile>();
+  private List<Mobile> mobiles = new ArrayList<Mobile>();
 
   public static World getInstance() {
     return ourInstance;
@@ -36,7 +36,8 @@ public class World implements Runnable {
   public void addLocation(Location location) {
     int zoneId = location.getZoneId();
     Zone zone = this.zones.get(zoneId);
-    zone.addLocation(location);
+    int numInZone = zone.addLocation(location);
+    location.setZoneName(zone.getZoneName() + numInZone);
     this.locations.add(location);
   }
 
@@ -58,17 +59,52 @@ public class World implements Runnable {
     this.zones.add(zone);
   }
 
+  public Zone getZone(int zoneId) {
+    for (Zone zone : this.zones) {
+      if (zone.getZoneId() == zoneId) {
+        return zone;
+      }
+    }
+    return null;
+  }
+
   public void addObject(MudObject mudObject) {
     Zone zone = this.zones.get(mudObject.getZoneId());
     zone.addObject(mudObject);
-
-    Location location = findLocationById(mudObject.getLocation());
-    if (location != null) {
-      location.addObject(mudObject);
-    }
-
     this.mudObjects.add(mudObject);
   }
+
+  public void placeObjects() {
+    for (MudObject mudObject : this.mudObjects) {
+
+
+      if (mudObject.getCarried() != MudObject.FLAG_IN_ROOM) {
+
+        if (mudObject.getCarried() == MudObject.FLAG_IN_CONTAINER) {
+//        System.out.println("** FLAG_IN_CONTAINER OBJECT: " + mudObject.getName() + "[" + mudObject.getId() + "]");
+          MudObject container = findMudObjectById(mudObject.getLocation());
+          if (container != null) {
+            System.out.printf("**[%03d]  %s is in container %s\n", mudObject.getId(), mudObject.getName(), container.getName());
+            container.addMudObject(mudObject);
+          } else {
+            System.out.printf("** ??\n");
+          }
+        } else {
+          Mobile mobile = findMobileById(mudObject.getLocation());
+          mobile.addMudObject(mudObject);
+          System.out.printf("**[%03d]  %s is carrying/wielding %s\n", mudObject.getId(), mobile.getName(), mudObject.getName());
+        }
+
+      } else {
+        Location location = findLocationById(mudObject.getLocation());
+        location.addObject(mudObject);
+        System.out.printf("**[%03d]  %s is in location %s\n", mudObject.getId(), mudObject.getName(), location.getZoneName());
+      }
+
+    }
+
+  }
+
 
   public void addMobile(Mobile mobile) {
     Zone zone = this.zones.get(mobile.getZoneId());
@@ -80,6 +116,15 @@ public class World implements Runnable {
     }
 
     this.mobiles.add(mobile);
+  }
+
+  public MudObject findMudObjectById(long mudObjectId) {
+    for (MudObject obj : mudObjects) {
+      if (obj.getId() == mudObjectId) {
+        return obj;
+      }
+    }
+    return null;
   }
 
   public MudObject findMudObjectByName(String name) {
@@ -107,8 +152,31 @@ public class World implements Runnable {
     t.start();
   }
 
+  public Mobile findMobileById(int mobileId) {
+    for (Mobile mobile : this.mobiles) {
+      if (mobile.getId() == mobileId) {
+        return mobile;
+      }
+    }
+    return null;
+  }
+
+  public Mobile findMobileByName(String target) {
+    for (Mobile mobile : this.mobiles) {
+      if (mobile.getName().equalsIgnoreCase(target)) {
+        return mobile;
+      }
+    }
+    return null;
+  }
+
+
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+
   public void moveMobiles() {
-    for (Mobile mobile: this.mobiles) {
+    for (Mobile mobile : this.mobiles) {
       if (mobile.getSpeed() > 0) {
         int rnd = 1 + (int) (Math.random() * 100);
         Location location = mobile.getLocation();
@@ -144,12 +212,5 @@ public class World implements Runnable {
     }
   }
 
-  public Mobile findMobileByName(String target) {
-    for (Mobile mobile : this.mobiles) {
-      if (mobile.getName().equalsIgnoreCase(target)) {
-        return mobile;
-      }
-    }
-    return null;
-  }
+
 }

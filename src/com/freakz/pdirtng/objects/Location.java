@@ -48,6 +48,8 @@ public class Location extends MObject {
   private List<Mobile> mobiles;
   private List<MudObject> mudObjects;
 
+  private String zoneName;
+
   public Location(int id) {
     super();
     this.id = id;
@@ -215,4 +217,13 @@ public class Location extends MObject {
     }
     return numOfExits;
   }
+
+  public void setZoneName(String zoneName) {
+    this.zoneName = zoneName;
+  }
+
+  public String getZoneName() {
+    return zoneName;
+  }
+
 }

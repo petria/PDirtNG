@@ -1,5 +1,8 @@
 package com.freakz.pdirtng.objects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Date: 30.5.2011
  * Time: 8:44
@@ -35,7 +38,9 @@ public class MudObject extends MObject {
   private int maxState;
 
   private int carried;
-  private int carriedFlag = FLAG_IN_ROOM;
+//  private int carriedFlag = FLAG_IN_ROOM;
+
+  private List<MudObject> inSideObjects = new ArrayList<MudObject>();
 
   public MudObject() {
     super();
@@ -153,13 +158,14 @@ public class MudObject extends MObject {
     this.carried = carried;
   }
 
-  public int getCarriedFlag() {
+/*  public int getCarriedFlag() {
     return carriedFlag;
   }
 
   public void setCarriedFlag(int carriedFlag) {
     this.carriedFlag = carriedFlag;
   }
+  */
 
   public void setMaxState(int state) {
     this.maxState = state;
@@ -176,4 +182,13 @@ public class MudObject extends MObject {
   public int getMaxState() {
     return maxState;
   }
+
+  public void addMudObject(MudObject mudObject) {
+    this.inSideObjects.add(mudObject);
+  }
+
+  public void removeMudObject(MudObject mudObject) {
+    this.inSideObjects.remove(mudObject);
+  }
+
 }
