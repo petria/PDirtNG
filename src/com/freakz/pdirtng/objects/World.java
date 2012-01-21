@@ -102,6 +102,26 @@ public class World implements Runnable {
       }
 
     }
+  }
+
+  public String getRealLocationString(MudObject mudObject) {
+
+    if (mudObject.getCarried() == MudObject.FLAG_IN_ROOM) {
+      Location room = findLocationById(mudObject.getLocation());
+      return room.getZoneName();
+    } else {
+
+      if (mudObject.getCarried() == MudObject.FLAG_IN_CONTAINER) {
+        MudObject container = findMudObjectById(mudObject.getLocation());
+        Location room = findLocationById(container.getLocation());
+        return String.format("Inside the %s in %s", container.getName(), room.getZoneName());
+      } else {
+        Mobile carrier = findMobileById(mudObject.getLocation());
+        Location room = carrier.getLocation();
+        return String.format("Wielded/worn by %s in %s\n", carrier.getName(), room.getZoneName());
+      }
+
+    }
 
   }
 
@@ -118,7 +138,7 @@ public class World implements Runnable {
     this.mobiles.add(mobile);
   }
 
-  public MudObject findMudObjectById(long mudObjectId) {
+  public MudObject findMudObjectById(int mudObjectId) {
     for (MudObject obj : mudObjects) {
       if (obj.getId() == mudObjectId) {
         return obj;
@@ -211,6 +231,5 @@ public class World implements Runnable {
       }
     }
   }
-
 
 }
