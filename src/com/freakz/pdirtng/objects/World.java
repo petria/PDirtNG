@@ -108,7 +108,7 @@ public class World implements Runnable {
 
     if (mudObject.getCarried() == MudObject.FLAG_IN_ROOM) {
       Location room = findLocationById(mudObject.getLocation());
-      return room.getZoneName();
+      return String.format("%s", room.getZoneName());
     } else {
 
       if (mudObject.getCarried() == MudObject.FLAG_IN_CONTAINER) {
@@ -118,7 +118,16 @@ public class World implements Runnable {
       } else {
         Mobile carrier = findMobileById(mudObject.getLocation());
         Location room = carrier.getLocation();
-        return String.format("Wielded/worn by %s in %s\n", carrier.getName(), room.getZoneName());
+        String roomStr = "<room??>";
+        if (room != null) {
+          roomStr = room.getZoneName();
+        }
+
+        String carrierStr = "<carrier??>";
+        if (carrier != null) {
+          carrierStr = carrier.getName();
+        }
+        return String.format("Wielded/worn by %s in %s", carrierStr, roomStr);
       }
 
     }
@@ -157,6 +166,15 @@ public class World implements Runnable {
     return mudObject;
   }
 
+  public List<MudObject> findMudObjectsByName(String name) {
+    List<MudObject> found = new ArrayList<MudObject>();
+    for (MudObject obj : mudObjects) {
+      if (obj.getName().toLowerCase().contains(name) || obj.getAltName().toLowerCase().contains(name)) {
+        found.add(obj);
+      }
+    }
+    return found;
+  }
 
   public MudObject findLocationMudObjectByName(Location location, String target) {
     for (MudObject obj : location.getMudObjects()) {
