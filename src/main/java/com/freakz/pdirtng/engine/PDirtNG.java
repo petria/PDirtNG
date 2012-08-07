@@ -71,7 +71,7 @@ public class PDirtNG {
   }
 
   private void scanHandlers() {
-    String scanDir = "out/production/PDirtNG/";
+    String scanDir = "out/";
     try {
       List<String> classNames = DynamicClassLoading.scanClasses(scanDir, "com/freakz/pdirtng/engine/handlers/", "com.freakz.pdirtng.engine.handlers.Handler.*");
       ClassLoader loader = new CustomClassLoader(scanDir);

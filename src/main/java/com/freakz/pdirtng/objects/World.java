@@ -219,21 +219,31 @@ public class World implements Runnable {
         int rnd = 1 + (int) (Math.random() * 100);
         Location location = mobile.getLocation();
         if (location != null && location.getValidExits() > 0 && rnd > MOBILES_MOVE_RANDOM) {
-          int rndExit = ((int) (Math.random() * 100)) % Location.NUM_OF_EXITS;
-          int dir = 0;
           while (true) {
-            dir = location.getExits()[rndExit];
-            if (dir != 0) {
+
+            int rndExit = ((int) (Math.random() * 100)) % Location.NUM_OF_EXITS;
+            int dir = 0;
+            while (true) {
+              dir = location.getExits()[rndExit];
+              if (dir != 0) {
+                break;
+              }
+              rndExit++;
+              if (rndExit == Location.NUM_OF_EXITS) {
+                rndExit = 0;
+              }
+            }
+            Location newLocation = findLocationById(dir);
+            // allow mobiles move only within zone they exists
+            if (newLocation == null) {
+              System.out.println(">> ???");
               break;
             }
-            rndExit++;
-            if (rndExit == Location.NUM_OF_EXITS) {
-              rndExit = 0;
+            if (newLocation.getZoneId() == location.getZoneId()) {
+              mobile.setLocation(newLocation, Location.EXIT_UNKNOWN, rndExit);
+              break;
             }
           }
-          Location newLocation = findLocationById(dir);
-          mobile.setLocation(newLocation, Location.EXIT_UNKNOWN, rndExit);
-//          mobile.moveTo(dir, rndExit);
         }
       }
     }

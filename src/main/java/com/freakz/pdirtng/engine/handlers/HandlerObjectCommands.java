@@ -31,7 +31,7 @@ public class HandlerObjectCommands extends EngineBaseHandler {
     } else {
       MudObject mudObject = request.getEngine().getWorld().findLocationMudObjectByName(request.getPlayer().getLocation(), request.getArgsParser().getArgs());
       if (mudObject != null) {
-
+        request.getPlayer().addMudObject(mudObject);
       } else {
         response.setResponse("It's not here.\n");
       }
